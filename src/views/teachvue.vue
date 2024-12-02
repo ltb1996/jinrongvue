@@ -17,7 +17,7 @@
         </video>
         <p class="description">{{ product?.description }}</p>
         <a href="javascript:;" class="cart-button" @click="handleClick"
-          >Add to NEXT</a
+          >下一页</a
         >
       </div>
     </div>

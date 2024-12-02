@@ -1,7 +1,7 @@
 <template>
   <div class="allStyle">
     <nav-bar></nav-bar>
-    <div class="sub-nav">
+    <!-- <div class="sub-nav">
       <el-menu
         :default-active="activeIndex"
         class="el-menu-demo"
@@ -25,7 +25,7 @@
       <el-button type="primary" class="custom-button" @click="handleJumpClick">
         前往技术详情
       </el-button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -91,7 +91,7 @@ onMounted(() => {
   overflow-x: hidden;
 }
 
-.sub-nav {
+/* .sub-nav {
   position: fixed;
   top: 110px;
   width: 100%;
@@ -184,5 +184,5 @@ onMounted(() => {
   background: rgba(0, 234, 255, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 234, 255, 0.2);
-}
+} */
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar" :class="{ change_color: scrollPosition > 200 }">
+  <div class="navbar" >
     <a class="left" href="http://shengbao.sanyau.edu.cn/">
       <img src="../../assets/img/pic2.png" />
       <p>SAXO BANK</p>
@@ -7,9 +7,9 @@
     <div class="center">
       <div class="logo">SAXO BANK</div>
       <div class="navlink">
-        <a class="nav-page">Project Introduce</a>
-        <a class="nav-page">Core Technology</a>
-        <a class="nav-page">Basic Operation</a>
+        <a class="nav-page" @click="handleClick('/projectindex')">Project Introduce</a>
+        <a class="nav-page" @click="handleClick('/knowledge')">Core Technology</a>
+        <a class="nav-page" @click="handleClick('/basicoperate')">Basic Operation</a>
         <a class="nav-page">Result</a>
       </div>
     </div>
@@ -27,7 +27,13 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+const handleClick = (path: string) => {
+  router.push(path);
+};
 </script>
 
 <style scoped>
@@ -171,6 +177,9 @@
   padding: 0 1.3em 0 1.3em;
   position: relative;
   transition: 1s;
+}
+.nav-page:hover {
+  cursor: pointer;
 }
 .nav-page::after {
   top: 50%;
