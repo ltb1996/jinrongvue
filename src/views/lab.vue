@@ -2,6 +2,15 @@
   <div class="allStyle">
     <nav-bar></nav-bar>
     <div class="lab-container">
+      <div class="breadcrumb-container">
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item>首页</el-breadcrumb-item>
+          <el-breadcrumb-item 
+            :to="{ path: '/basicoperate' }"
+          >技术实操</el-breadcrumb-item>
+          <el-breadcrumb-item class="current-page">{{ currentLab?.title || '加载中...' }}</el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
       <div class="lab-content" v-if="currentLab">
         <h1>{{ currentLab.title }}</h1>
         <div
@@ -15,13 +24,20 @@
             <pre
               style="margin-bottom: 10px"
             ><code>{{ section.code }}</code></pre>
-            <el-button type="success" @click="runCode(section)"
-              >运行代码</el-button
-            >
+            <el-button type="success" @click="toggleResult(section)">
+              {{ section.result ? '隐藏结果' : '运行代码' }}
+            </el-button>
           </div>
           <div v-if="section.result" class="result-block">
             <h3>运行结果：</h3>
-            <div class="result-content">{{ section.result }}</div>
+            <div :class="['result-content', { 'echarts-content': currentLab?.title === 'ECharts实验' }]">
+              <template v-if="currentLab?.title === 'ECharts实验'">
+                <img :src="echartsresult" alt="ECharts结果" class="echarts-result-img"/>
+              </template>
+              <template v-else>
+                {{ section.result }}
+              </template>
+            </div>
           </div>
         </div>
         <div class="navigation-buttons">
@@ -37,6 +53,7 @@
 import NavBar from "../components/nav-bar/index.vue";
 import { ref, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import echartsresult from "../assets/img/echartsresult.png";
 
 const route = useRoute();
 const router = useRouter();
@@ -184,23 +201,26 @@ watch(
   { immediate: true }
 );
 
-const runCode = (section: Section) => {
-  try {
-    // 根据不同的实验类型执行不同的逻辑
-    switch (currentLab.value?.title) {
-      case "Vue基础实验":
-        section.result = "Message Changed!";
-        break;
-      case "JavaScript实验":
-        const jsResult = eval(section.code);
-        section.result = "['苹果', '香蕉', '橙子', '葡萄']";
-        break;
-      case "ECharts实验":
-        section.result = "图表创建成功！";
-        break;
-      case "Mock.js实验":
-        // const mockResult = eval(section.code);
-        section.result = `[  
+const toggleResult = (section: Section) => {
+  if (section.result) {
+    // 如果已经有结果，则清空结果
+    section.result = '';
+  } else {
+    // 如果没有结果，则运行代码
+    try {
+      switch (currentLab.value?.title) {
+        case "Vue基础实验":
+          section.result = "Message Changed!";
+          break;
+        case "JavaScript实验":
+          const jsResult = eval(section.code);
+          section.result = "['苹果', '香蕉', '橙子', '葡萄']";
+          break;
+        case "ECharts实验":
+          section.result = "图表创建成功！";
+          break;
+        case "Mock.js实验":
+          section.result = `[  
   {  
     "id": 1,  
     "name": "王芳",  
@@ -209,15 +229,16 @@ const runCode = (section: Section) => {
     "email": "wangfang@example.com"  
   }  
 ]`;
-        break;
-      case "Axios实验":
-        section.result = "请求发送成功！";
-        break;
-      default:
-        section.result = "代码执行完成";
+          break;
+        case "Axios实验":
+          section.result = "请求发送成功！";
+          break;
+        default:
+          section.result = "代码执行完成";
+      }
+    } catch (error: any) {
+      section.result = `执行错误: ${error.message}`;
     }
-  } catch (error: any) {
-    section.result = `执行错误: ${error.message}`;
   }
 };
 
@@ -240,7 +261,7 @@ const handlePrevPage = () => {
 
   if (prevId < 1) {
     // 如果是第一个实验，跳转到basicoperate页面
-    router.push("/basicoperate");
+    router.push("/basicoperate/shoppage");
   } else {
     // 否则跳转到上一个实验
     router.push(`/lab/${prevId}`);
@@ -256,13 +277,21 @@ const handlePrevPage = () => {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .lab-container {
   margin-top: 100px;
   padding: 20px;
   color: #fff;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.lab-container::-webkit-scrollbar {
+  display: none;
 }
 
 .lab-content {
@@ -272,6 +301,7 @@ const handlePrevPage = () => {
   border: 1px solid rgba(0, 234, 255, 0.3);
   border-radius: 8px;
   padding: 20px;
+  padding-bottom: 40px;
 }
 
 .code-block {
@@ -291,6 +321,7 @@ const handlePrevPage = () => {
   padding: 20px;
   border-radius: 4px;
   margin: 20px 0;
+  overflow: hidden;
 }
 
 .navigation-buttons {
@@ -298,5 +329,64 @@ const handlePrevPage = () => {
   justify-content: space-between;
   margin-top: 20px;
   padding: 0 20px;
+}
+
+.breadcrumb-container {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 10px 0px;
+}
+
+:deep(.el-breadcrumb) {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  text-shadow: 1px 1px 2px black;
+}
+
+:deep(.el-breadcrumb__item) {
+  color: #fff;
+}
+
+:deep(.el-breadcrumb__inner) {
+  color: inherit;
+  font-weight: normal;
+  transition: color 0.3s;
+}
+
+:deep(.el-breadcrumb__inner.is-link:hover) {
+  color: #00eaff;
+}
+
+:deep(.el-breadcrumb__separator) {
+  color: #fff;
+  margin: 0 8px;
+}
+
+:deep(.current-page .el-breadcrumb__inner) {
+  color: #00eaff;
+}
+
+.result-content {
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.echarts-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.echarts-result-img {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 10px 0;
 }
 </style>

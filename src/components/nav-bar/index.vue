@@ -7,10 +7,26 @@
     <div class="center">
       <div class="logo">SAXO BANK</div>
       <div class="navlink">
-        <a class="nav-page" @click="handleClick('/projectindex')">项目介绍</a>
-        <a class="nav-page" @click="handleClick('/knowledge')">核心技术</a>
-        <a class="nav-page" @click="handleClick('/basicoperate')">技术实操</a>
-        <a class="nav-page" @click="handleClick('/index')">项目成果</a>
+        <a 
+          class="nav-page" 
+          :class="{ 'active': isActive('/projectindex') }" 
+          @click="handleClick('/projectindex')"
+        >项目介绍</a>
+        <a 
+          class="nav-page" 
+          :class="{ 'active': isActive('/knowledge') }"
+          @click="handleClick('/knowledge')"
+        >核心技术</a>
+        <a 
+          class="nav-page" 
+          :class="{ 'active': isActive('/basicoperate') }"
+          @click="handleClick('/basicoperate')"
+        >技术实操</a>
+        <a 
+          class="nav-page" 
+          :class="{ 'active': isActive('/index') }"
+          @click="handleClick('/index')"
+        >项目成果</a>
       </div>
     </div>
     <div class="right">
@@ -28,11 +44,22 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
+const route = useRoute();
 
 const handleClick = (path: string) => {
   router.push(path);
+};
+
+const isActive = (path: string) => {
+  // 特殊处理 /lab 路由，让它也激活 /basicoperate
+  if (path === '/basicoperate' && route.path.startsWith('/lab')) {
+    return true;
+  }
+  
+  // 其他情况保持原来的逻辑
+  return route.path.startsWith(path);
 };
 </script>
 
@@ -181,6 +208,9 @@ export default {
   position: relative;
   color: black;
   font-size: 18px;
+}
+.navbar .center .navlink .nav-page.active {
+  color: #00eaff;
 }
 .navbar .center .navlink .nav-page:hover {
   cursor: pointer;

@@ -38,6 +38,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/basicoperate',
     name: 'basicoperate',
     component: () => import('../views/basicoperate.vue'),
+    children: [
+      {
+        path: 'shoppage',
+        component: () => import('../views/basicoperate/shoppage.vue')
+      }
+    ]
   },
   {
     path: '/lab/:id',
