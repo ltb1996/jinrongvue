@@ -1,83 +1,111 @@
 <template>
   <div class="allStyle">
     <nav-bar></nav-bar>
-    <!-- <div class="sub-nav">
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-      >
-        <el-menu-item index="1">项目简介</el-menu-item>
-        <el-menu-item index="2">项目目的</el-menu-item>
-        <el-menu-item index="3">项目背景</el-menu-item>
-        <el-menu-item index="4">项目原理</el-menu-item>
-      </el-menu>
-    </div>
-
-    <div class="description-area" v-if="currentDescription">
-      <div class="description-content">
-        {{ currentDescription }}
+    <div v-if="!showCards" class="button-container">
+      <div class="cyber-button" @click="handleExamInfo">
+        <span class="cyber-button__text">考核说明</span>
+        <span class="cyber-button__glitch"></span>
+      </div>
+      <div class="cyber-button" @click="handleEnterLab">
+        <span class="cyber-button__text">进入实验</span>
+        <span class="cyber-button__glitch"></span>
       </div>
     </div>
 
-    <div class="jump-button" v-if="activeIndex == '4'">
-      <el-button type="primary" class="custom-button" @click="handleJumpClick">
-        前往技术详情
-      </el-button>
-    </div> -->
+    <!-- 卡片展示区域 -->
+    <div v-else class="shop-page">
+      <div class="cards-container">
+        <div v-for="item in cardList" :key="item.id" class="card" @click="handleCardClick(item.id)">
+          <div class="card-content">
+            <img :src="item.src" :alt="item.title" class="card-image"/>
+            <div class="card-info">
+              <h3>{{ item.title }}</h3>
+              <p class="brand">{{ item.brand }}</p>
+              <p class="description">{{ item.description }}</p>
+              <p class="price">{{ item.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 返回按钮 -->
+      <div class="return-button" @click="handleReturn">
+        返回
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import NavBar from "../components/nav-bar/index.vue";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
+import vuell from "../assets/img/vuell.png";
+import javascriptpng from "../assets/img/jsjsjs.jpg";
+import Echartspng from "../assets/img/Echartspng.jpg";
+import Axiosjpg from "../assets/img/axiosjpg.jpg";
+import Mockpng from "../assets/img/mockjs.jpg";
 
 const router = useRouter();
-const activeIndex = ref("1");
-const currentDescription = ref("");
+const showCards = ref(false);
 
-// 定义一个获取描述内容的函数
-const getDescription = (index: string) => {
-  switch (index) {
-    case "1":
-      return "这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容这是项目简介的内容";
-    case "2":
-      return "这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容这是项目目的的内容";
-    case "3":
-      return "这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容";
-    case "4":
-      return "这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容这是项目背景的内容";
-    default:
-      return "";
-  }
+const cardList = ref([
+  {
+    id: 1,
+    title: "实验一",
+    brand: "Vue基础实验",
+    description: "本实验将带领你了解Vue 3的基础知识,包括组件创建、生命周期、数据绑定等核心概念。通过实践加深对Vue框架的理解。",
+    price: "难度: ★★★",
+    src: vuell,
+  },
+  {
+    id: 2,
+    title: "实验二", 
+    brand: "JavaScript实验",
+    description: "本实验将帮助你掌握JavaScript的核心概念,包括数据类型、函数、异步编程等重要知识点。通过编码练习提升JavaScript编程能力。",
+    price: "难度: ★★★",
+    src: javascriptpng,
+  },
+  {
+    id: 3,
+    title: "实验三",
+    brand: "Echarts实验",
+    description: "本实验将指导你使用ECharts创建各类图表,掌握数据可视化的基本技能。通过实例学习ECharts的配置和使用方法。",
+    price: "难度: ★★★★",
+    src: Echartspng,
+  },
+  {
+    id: 4,
+    title: "实验四",
+    brand: "Mock.js实验",
+    description: "本实验将教你使用Mock.js模拟后端接口数据,学习如何在开发阶段独立完成前端功能。通过实践掌握数据模拟的技巧。",
+    price: "难度: ★★",
+    src: Mockpng,
+  },
+  {
+    id: 5,
+    title: "实验五",
+    brand: "Axios实验",
+    description: "本实验将带你学习使用Axios发送HTTP请求,掌握前后端数据交互的方法。通过实例了解接口调用的完整流程。",
+    price: "难度: ★★★",
+    src: Axiosjpg,
+  },
+]);
+
+const handleExamInfo = () => {
+  console.log("考核说明");
 };
 
-// 初始化显示内容
-currentDescription.value = getDescription("1");
-
-const handleSelect = (index: string) => {
-  activeIndex.value = index;
-  currentDescription.value = getDescription(index);
+const handleEnterLab = () => {
+  showCards.value = true;
 };
 
-const handleJumpClick = () => {
-  // if (activeIndex.value === "4") {
-  //   ElMessage.warning("请先了解其他内容");
-  //   return;
-  // }
-  router.push("/knowledge");
+const handleReturn = () => {
+  showCards.value = false;
 };
 
-// 可选：使用 onMounted 确保组件挂载后初始化
-onMounted(() => {
-  // 确保页面刷新或返回时也能显示默认内容
-  if (!currentDescription.value) {
-    currentDescription.value = getDescription(activeIndex.value);
-  }
-});
+const handleCardClick = (id: number) => {
+  router.push(`/lab/${id}`);
+};
 </script>
 
 <style scoped>
@@ -91,98 +119,227 @@ onMounted(() => {
   overflow-x: hidden;
 }
 
-/* .sub-nav {
-  position: fixed;
-  top: 110px;
-  width: 100%;
-  z-index: 1;
-  background: transparent;
-}
-
-:deep(.el-menu) {
-  background: transparent;
-  border: none;
+.button-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 60px;
+  height: calc(100vh - 200px);
 }
 
-:deep(.el-menu-item) {
-  color: #fff !important;
-  font-size: 16px;
-  height: 50px;
-  line-height: 50px;
-  margin: 0 20px;
+.cyber-button {
+  --primary: #00eaff;
+  --shadow-primary: rgba(0, 234, 255, 0.3);
+  --color: rgba(255, 255, 255, 0.9);
+  --font-size: 26px;
+  --shadow-primary-hue: 180;
+  --shadow-secondary-hue: 60;
+  --shadow-secondary: rgba(0, 234, 255, 0.1);
+  --clip: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  --border: 4px;
+  --shimmy-distance: 5;
+  --clip-one: polygon(0 2%, 100% 2%, 100% 95%, 0 95%);
+  --clip-two: polygon(0 78%, 100% 78%, 100% 100%, 0 100%);
+  --clip-three: polygon(0 44%, 100% 44%, 100% 54%, 0 54%);
+  --clip-four: polygon(0 0, 100% 0, 100% 0, 0 0);
+  --clip-five: polygon(0 0, 100% 0, 100% 0, 0 0);
+  --clip-six: polygon(0 40%, 100% 40%, 100% 85%, 0 85%);
+  --clip-seven: polygon(0 63%, 100% 63%, 100% 80%, 0 80%);
+  
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 80px;
+  background: transparent;
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: var(--font-size);
+  font-family: 'Cyber', sans-serif;
+  color: var(--color);
+  transition: background 0.2s;
 }
 
-:deep(.el-menu-item:hover) {
-  background: transparent !important;
-  color: #00eaff !important;
+.cyber-button:hover {
+  background: var(--shadow-primary);
+  box-shadow: 0 0 20px var(--shadow-primary);
+  animation: cyber-hover 1s infinite;
 }
 
-:deep(.el-menu-item.is-active) {
-  background: transparent !important;
-  color: #00eaff !important;
-  border-bottom: 2px solid #00eaff !important;
-}
-
-.description-area {
-  position: fixed;
-  top: 280px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70%;
-  max-width: 1200px;
-  z-index: 1;
-}
-
-.description-content {
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 234, 255, 0.3);
-  border-radius: 8px;
-  padding: 20px 30px;
-  color: #fff;
-  font-size: 24px;
-  line-height: 1.8;
-  text-align: justify;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 234, 255, 0.1);
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.jump-button {
-  position: absolute;
-  bottom: 150px;
-  right: 100px;
+.cyber-button__text {
+  position: relative;
   z-index: 2;
 }
 
-.custom-button {
-  background: rgba(0, 234, 255, 0.1);
-  border: 1px solid #00eaff;
-  color: #fff;
-  width: 150px;
-  height: 60px;
-  font-size: 18px;
-  padding: 12px 24px;
-  border-radius: 4px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+.cyber-button__glitch {
+  position: absolute;
+  top: calc(var(--border) * -1);
+  left: calc(var(--border) * -1);
+  right: calc(var(--border) * -1);
+  bottom: calc(var(--border) * -1);
+  background: var(--shadow-primary);
+  text-shadow: 2px 2px var(--shadow-primary);
+  clip-path: var(--clip);
+  animation: glitch 2s infinite;
+  display: none;
 }
 
-.custom-button:hover {
-  background: rgba(0, 234, 255, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 234, 255, 0.2);
-} */
+.cyber-button:hover .cyber-button__glitch {
+  display: block;
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: var(--clip-one);
+  }
+  2%, 8% {
+    clip-path: var(--clip-two);
+    transform: translate(calc(var(--shimmy-distance) * -1%), 0);
+  }
+  6% {
+    clip-path: var(--clip-two);
+    transform: translate(calc(var(--shimmy-distance) * 1%), 0);
+  }
+  9% {
+    clip-path: var(--clip-two);
+    transform: translate(0, 0);
+  }
+  10% {
+    clip-path: var(--clip-three);
+    transform: translate(calc(var(--shimmy-distance) * 1%), 0);
+  }
+  13% {
+    clip-path: var(--clip-three);
+    transform: translate(0, 0);
+  }
+  14%, 21% {
+    clip-path: var(--clip-four);
+    transform: translate(calc(var(--shimmy-distance) * 1%), 0);
+  }
+  25% {
+    clip-path: var(--clip-five);
+    transform: translate(calc(var(--shimmy-distance) * 1%), 0);
+  }
+  30% {
+    clip-path: var(--clip-five);
+    transform: translate(calc(var(--shimmy-distance) * -1%), 0);
+  }
+  35%, 45% {
+    clip-path: var(--clip-six);
+    transform: translate(calc(var(--shimmy-distance) * -1%));
+  }
+  40% {
+    clip-path: var(--clip-six);
+    transform: translate(calc(var(--shimmy-distance) * 1%));
+  }
+  50% {
+    clip-path: var(--clip-six);
+    transform: translate(0, 0);
+  }
+  55% {
+    clip-path: var(--clip-seven);
+    transform: translate(calc(var(--shimmy-distance) * 1%), 0);
+  }
+  60% {
+    clip-path: var(--clip-seven);
+    transform: translate(0, 0);
+  }
+  31%, 61%, 100% {
+    clip-path: var(--clip);
+    transform: translate(0, 0);
+  }
+}
+
+/* 新增卡片样式 */
+.shop-page {
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+}
+
+.card {
+  width: 300px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 234, 255, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-info {
+  color: #fff;
+}
+
+.card-info h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #00eaff;
+}
+
+.brand {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 10px 0;
+  height: 84px;
+  overflow: hidden;
+}
+
+.price {
+  color: #00eaff;
+  font-size: 16px;
+  margin: 10px 0 0;
+}
+
+.return-button {
+  position: absolute;
+  bottom: 150px;
+  right: 135px;
+  background-color: #00eaff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+  transition: background-color 0.3s;
+}
+
+.return-button:hover {
+  background-color: #007acc;
+}
 </style>

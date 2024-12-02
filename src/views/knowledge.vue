@@ -160,7 +160,8 @@ const product = ref([
   position: relative;
   transition: transform 0.6s;
   cursor: pointer;
-  border: 0px solid rgba(56, 56, 56, 0);
+  /* border: 0px solid rgba(56, 56, 56, 0); */
+  border: 1px solid rgba(0, 234, 255, 0.3);
   overflow: hidden;
   width: 20em;
   border-radius: 30px;
@@ -186,6 +187,7 @@ const product = ref([
 
 .outer-card:hover {
   transform: translateY(-0.5em);
+  box-shadow: 0 0 20px rgba(0, 234, 255, 0.3);
 }
 
 .outer-card:hover > .card > .card-bottom {

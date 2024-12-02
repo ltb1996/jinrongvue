@@ -167,7 +167,7 @@ const handleClick = () => {
   if (nextIndex > products.length) {
     setTimeout(() => {
       loading.close();
-      router.push("/index");
+      router.push("/basicoperate");
     }, 1000);
   } else {
     setTimeout(() => {

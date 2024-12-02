@@ -50,7 +50,7 @@ const state = reactive<LoginState>({
 
 const login = () => {
   if (state.username === "admin" && state.password === "admin") {
-    router.push("/knowledge");
+    router.push("/projectindex");
   } else {
     state.errorMessage = "用户名或密码错误";
     ElMessage.error(state.errorMessage);

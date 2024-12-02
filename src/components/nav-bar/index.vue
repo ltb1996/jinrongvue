@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar" >
+  <div class="navbar">
     <a class="left" href="http://shengbao.sanyau.edu.cn/">
       <img src="../../assets/img/pic2.png" />
       <p>SAXO BANK</p>
@@ -7,10 +7,10 @@
     <div class="center">
       <div class="logo">SAXO BANK</div>
       <div class="navlink">
-        <a class="nav-page" @click="handleClick('/projectindex')">Project Introduce</a>
-        <a class="nav-page" @click="handleClick('/knowledge')">Core Technology</a>
-        <a class="nav-page" @click="handleClick('/basicoperate')">Basic Operation</a>
-        <a class="nav-page">Result</a>
+        <a class="nav-page" @click="handleClick('/projectindex')">项目介绍</a>
+        <a class="nav-page" @click="handleClick('/knowledge')">核心技术</a>
+        <a class="nav-page" @click="handleClick('/basicoperate')">技术实操</a>
+        <a class="nav-page" @click="handleClick('/index')">项目成果</a>
       </div>
     </div>
     <div class="right">
@@ -28,11 +28,17 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 const router = useRouter();
 
 const handleClick = (path: string) => {
   router.push(path);
+};
+</script>
+
+<script lang="ts">
+export default {
+  name: "NavBar",
 };
 </script>
 
@@ -133,7 +139,10 @@ const handleClick = (path: string) => {
   text-decoration: none;
   color: #fff;
   font-size: 0.8rem;
-  padding: 0em 0.4em;
+  padding: 0em 1.5em;
+  position: relative;
+  transition: 1s;
+  text-align: center;
 }
 .navbar .right {
   display: flex;
@@ -173,32 +182,9 @@ const handleClick = (path: string) => {
   color: black;
   font-size: 18px;
 }
-.nav-page {
-  padding: 0 1.3em 0 1.3em;
-  position: relative;
-  transition: 1s;
-}
-.nav-page:hover {
+.navbar .center .navlink .nav-page:hover {
   cursor: pointer;
-}
-.nav-page::after {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0.7em);
-  content: "";
-  position: absolute;
-  display: block;
-  background-color: white;
-  border-radius: 100%;
-  width: 0.3em;
-  height: 0.3em;
-  text-align: center;
-  box-sizing: border-box;
-  opacity: 0;
-  transition: 0.5s;
-}
-.nav-page:hover::after {
-  opacity: 100%;
+  color: #00eaff;
 }
 
 /* @media only screen and (max-width: 600px) {
