@@ -383,8 +383,8 @@ onMounted(() => {
   width: 255px;
   height: 400px;
   margin: auto;
-  right: 80px;
-  bottom: 10px;
+  right: 120px;
+  bottom: 15px;
 }
 
 .g-contrast {

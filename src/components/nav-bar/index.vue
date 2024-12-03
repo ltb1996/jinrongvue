@@ -91,11 +91,11 @@ export default {
   height: 6em;
   top: 0;
   left: 0;
-  position: fixed;
+  position: absolute;
   margin: 0;
   padding: 0;
   transition: 0.3s all linear;
-  z-index: 1;
+  z-index: 99;
   min-width: 1200px;
 }
 .navbar.change_color {
