@@ -22,7 +22,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="password">密码</label>
+        <label for="password">确认密码</label>
         <input
           type="password"
           id="password"

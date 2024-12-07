@@ -21,9 +21,11 @@
           <h2>{{ section.title }}</h2>
           <p>{{ section.description }}</p>
           <div class="code-block">
-            <pre
-              style="margin-bottom: 10px"
-            ><code>{{ section.code }}</code></pre>
+            <textarea
+              v-model="section.code"
+              class="code-textarea"
+              spellcheck="false"
+            ></textarea>
             <el-button type="success" @click="toggleResult(section)">
               {{ section.result ? '隐藏结果' : '运行代码' }}
             </el-button>
@@ -201,6 +203,34 @@ watch(
   { immediate: true }
 );
 
+const executeJavaScript = (code: string) => {
+  let output = '';
+  const originalLog = console.log;
+  
+  console.log = (...args) => {
+    output += args.map(arg => {
+      if (Array.isArray(arg)) {
+        // 数组使用一行显示
+        return `[${arg.join(', ')}]`;
+      } else if (typeof arg === 'object' && arg !== null) {
+        // 对象仍然保持格式化显示
+        return JSON.stringify(arg, null, 2);
+      } else {
+        return String(arg);
+      }
+    }).join(' ') + '\n';
+  };
+
+  try {
+    new Function(code)();
+    console.log = originalLog;
+    return output || '代码执行成功，但没有输出结果';
+  } catch (error: any) {
+    console.log = originalLog;
+    return `执行错误: ${error.message}`;
+  }
+};
+
 const toggleResult = (section: Section) => {
   if (section.result) {
     // 如果已经有结果，则清空结果
@@ -209,12 +239,11 @@ const toggleResult = (section: Section) => {
     // 如果没有结果，则运行代码
     try {
       switch (currentLab.value?.title) {
+        case "JavaScript实验":
+          section.result = executeJavaScript(section.code);
+          break;
         case "Vue基础实验":
           section.result = "Message Changed!";
-          break;
-        case "JavaScript实验":
-          const jsResult = eval(section.code);
-          section.result = "['苹果', '香蕉', '橙子', '葡萄']";
           break;
         case "ECharts实验":
           section.result = "图表创建成功！";
@@ -247,7 +276,7 @@ const handleNextPage = () => {
   const nextId = currentId + 1;
 
   if (nextId > labContent.length) {
-    // 如果是最后一个实验，跳转到index页面
+    // 如果最后一个实验，跳转到index页面
     router.push("/index");
   } else {
     // 否则跳转到下一个实验
@@ -311,9 +340,32 @@ const handlePrevPage = () => {
   margin: 20px 0;
 }
 
-.code-block pre {
+.code-textarea {
+  width: 100%;
+  min-height: 300px;
+  background: transparent;
+  border: none;
   color: #00eaff;
-  margin: 0;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+  margin-bottom: 10px;
+  resize: vertical;
+  outline: none;
+  white-space: pre;
+  overflow-x: auto;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.code-textarea::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+.code-textarea:focus {
+  /* border: 1px solid rgba(0, 234, 255, 0.3); */
+  background: rgba(0, 234, 255, 0.05);
 }
 
 .result-block {
