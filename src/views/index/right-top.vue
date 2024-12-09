@@ -270,7 +270,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
       }
     },
     legend: {
-      data: ['数据1', '数据2'],
+      data: ['盛宝学院', '三亚学院'],
       textStyle: {
         color: '#7EB7FD'
       },
@@ -280,7 +280,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
     radar: {
       indicator: lastSixX.map(item => ({
         name: item,
-        max: Math.max(...[...lastSixY, ...lastSixY2]) * 1.2
+        max: Math.max(...[...lastSixY, ...lastSixY2]) * 1.0
       })),
       splitArea: {
         areaStyle: {
@@ -314,7 +314,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
         data: [
           {
             value: lastSixY,
-            name: '数据1',
+            name: '盛宝学院',
             symbolSize: 6,
             lineStyle: {
               width: 2,
@@ -326,7 +326,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
           },
           {
             value: lastSixY2,
-            name: '数据2',
+            name: '三亚学院',
             symbolSize: 6,
             lineStyle: {
               width: 2,
