@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import { ref } from "vue";
 import { RouterView } from "vue-router";
@@ -34,7 +35,7 @@ const wrapperStyle = {};
   </scale-screen>
   <Setting />
 </template>
-<style lang="scss" scoped>
+<style scoped>
 .content_wrap {
   width: 100%;
   height: 100%;
@@ -42,6 +43,6 @@ const wrapperStyle = {};
   box-sizing: border-box;
   background-image: url("@/assets/img/pageBg.png");
   background-size: cover;
-  background-position: center center;
+  background-position: center center; 
 }
 </style>

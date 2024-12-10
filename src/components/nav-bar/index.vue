@@ -2,10 +2,10 @@
   <div class="navbar">
     <a class="left" href="http://shengbao.sanyau.edu.cn/">
       <img src="../../assets/img/pic2.png" />
-      <p>SAXO BANK</p>
+      <p>盛宝学院</p>
     </a>
     <div class="center">
-      <div class="logo">SAXO BANK</div>
+      <div class="logo">基于Vue.js的金融数据可视化平台</div>
       <div class="navlink">
         <a 
           class="nav-page" 
@@ -135,14 +135,15 @@ export default {
 }
 .navbar .center .logo {
   display: flex;
-  color: #f8f8f8;
+  color: #00eaff;
+  opacity: 0.8;
   font-size: 30px;
   font-family: "Hjet", sans-serif;
   text-decoration: none;
   align-items: flex-end;
   justify-content: center;
   padding: 0em 0.6em;
-  font-size: 2.2em;
+  font-size: 1.8em;
   letter-spacing: 0.1em;
   white-space: nowrap;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -151,6 +152,7 @@ export default {
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently*/
+  margin-bottom: 5px;
 }
 .navbar .center .navlink {
   display: flex;

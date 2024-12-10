@@ -6,10 +6,12 @@
       <div class="details">
         <p class="brand">{{ product?.brand }}</p>
         <h1 class="title">
-          {{ product?.title
-          }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="study-link"
-            ><a style="color: #00ff6f" :href="product?.studySrc" target="_blank">在线学习链接</a></span
-          >
+          <span class="study-link"
+            ><a style="color: #00ff6f" :href="product?.studySrc" target="_blank"
+              >在线学习链接</a
+            ></span
+          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {{ product?.title }}
         </h1>
         <video class="product-video" controls :key="product?.videourl">
           <source :src="product?.videourl" type="video/mp4" />
@@ -25,12 +27,15 @@
   <div class="logo"></div>
   <div class="g-container">
     <div class="g-number">
-      <CountUp
+      <!-- <CountUp
         class="count-up"
         :endVal="100"
         :duration="2"
         :options="{ suffix: '%' }"
-      />
+      /> -->
+      <div class="maopaotitle">
+        {{ product?.title }}
+      </div>
     </div>
     <div class="g-contrast">
       <div class="g-circle"></div>
@@ -66,7 +71,7 @@ import { useRoute, useRouter } from "vue-router";
 import { ElLoading } from "element-plus";
 // import { Calendar } from 'element-plus';
 import dayjs from "dayjs";
-import CountUp from "@/components/count-up";
+// import CountUp from "@/components/count-up";
 import jsVideo from "../assets/img/js.mp4";
 import EchartsVideo from "../assets/img/echarts.mp4";
 import AxiosVideo from "../assets/img/axiosVideo.mp4";
@@ -88,7 +93,7 @@ const products: Product[] = [
     id: 1,
     src: vuell,
     brand: "项目技术核心一",
-    title: "Vue3框架",
+    title: "Vue3",
     videourl: "https://learning.dcloud.net.cn/video/chapter_00.mp4",
     studySrc: "https://cn.vuejs.org/",
     description:
@@ -98,7 +103,7 @@ const products: Product[] = [
     id: 2,
     src: javascriptpng,
     brand: "项目技术核心二",
-    title: "Javasript",
+    title: "JavaSript",
     videourl: jsVideo,
     studySrc: "https://www.javascriptcn.com/",
     description:
@@ -617,7 +622,10 @@ li:nth-child(15) {
 } */
 
 /* 或者尝试这个 */
-.count-up :deep(*) {
+/* .count-up :deep(*) {
   font-size: 30px !important;
+} */
+.maopaotitle {
+  font-size: 30px !important
 }
 </style>

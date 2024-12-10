@@ -244,3 +244,15 @@ onUnmounted(() => {
   // state.observer?.disconnect();
 });
 </script>
+
+<style scoped>
+.v-screen-box {
+  width: 100%;
+  height: 100%;
+  padding: 16px 16px 16px 16px;
+  box-sizing: border-box;
+  background-image: url("@/assets/img/pageBg.png");
+  background-size: cover;
+  background-position: center center;
+}
+</style>
