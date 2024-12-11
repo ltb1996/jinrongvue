@@ -122,7 +122,7 @@ const handleFileChange = (file: any) => {
       </ItemWrap>
     </div>
     <div class="contetn_right">
-      <ItemWrap class="contetn_left-bottom contetn_lr-item" title="盛宝学院雷达数据">
+      <ItemWrap class="contetn_left-bottom contetn_lr-item" title="盛宝学院师资力量雷达数据">
         <RightTop />
       </ItemWrap>
       <ItemWrap

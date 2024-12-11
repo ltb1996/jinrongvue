@@ -83,9 +83,32 @@ export default [
       return a;
     },
   },
-  //右上
+  //中间原数据
   {
     url: "/bigscreen/alarmNum",
+    type: "get",
+    response: () => {
+      const a = Mock.mock({
+        success: true,
+        data: {
+          dateList: [
+            "2021-11-01",
+            "2021-12-01",
+            "2022-01-01",
+            "2022-02-01",
+            "2022-03-01",
+            "2022-04-01",
+          ],
+          "numList|6": ["@integer(0, 1000)"],
+          "numList2|6": ["@integer(0, 1000)"],
+        },
+      });
+      return a;
+    },
+  },
+  // 右上数据
+  {
+    url: "/bigscreen/righttopdatanew",
     type: "get",
     response: () => {
       const a = Mock.mock({
@@ -97,10 +120,10 @@ export default [
             "讲师人数",
             "博士学位",
             "硕士学位",
-            "国家级人才"
+            "国家级人才",
           ],
-          "numList": [15, 35, 24, 50, 80, 20],    // 盛宝学院数据
-          "numList2": [500, 600, 300, 800, 1000, 300]     // 三亚学院数据
+          numList: [15, 35, 24, 50, 80, 20], // 盛宝学院数据
+          numList2: [200, 300, 300, 200, 500, 300], // 三亚学院数据
         },
       });
       return a;

@@ -6,7 +6,8 @@ const indexUrl=  {
     "centerBottom":"/bigscreen/installationPlan",
 
     'leftBottom':"/bigscreen/leftBottom", //坐下
-    'rightTop':"/bigscreen/alarmNum", //报警次数
+    'rightTop':"/bigscreen/alarmNum", //中间原数据
+    'newRightTop':"/bigscreen/righttopdatanew", //右上数据
     'rightBottom':'/bigscreen/rightBottom',//右下 
     'rightCenter':'/bigscreen/ranking',// 报警排名
 }
@@ -41,6 +42,10 @@ export const installationPlan=(param:any={})=>{
 /**右上--报警次数 */
 export const alarmNum=(param:any={})=>{
     return GET(indexUrl.rightTop,param)
+}
+
+export const rightTopDataNew=(param:any={})=>{
+    return GET(indexUrl.newRightTop,param)
 }
 
 /**右中--报警排名 */

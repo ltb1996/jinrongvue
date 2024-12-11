@@ -233,12 +233,12 @@ onMounted(() => {
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { alarmNum } from "@/api";
+import { rightTopDataNew } from "@/api";
 import { ElMessage } from "element-plus";
 
 const option = ref({});
 const getData = () => {
-  alarmNum()
+  rightTopDataNew()
     .then((res) => {
       if (res.success) {
         setOption(res.data.dateList, res.data.numList, res.data.numList2);
