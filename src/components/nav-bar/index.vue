@@ -1,45 +1,49 @@
 <template>
   <div class="navbar">
-    <a class="left" href="http://shengbao.sanyau.edu.cn/">
-      <img src="../../assets/img/pic2.png" />
-      <p>盛宝学院</p>
-    </a>
-    <div class="center">
+    <div class="headpart">
+      <a class="left" href="http://shengbao.sanyau.edu.cn/" target="_blank">
+        <img src="../../assets/img/pic2.png" />
+        <p>盛宝金融商科技学院</p>
+      </a>
       <div class="logo">基于Vue.js的金融数据可视化平台</div>
+    </div>
+    <div class="center">
       <div class="navlink">
-        <a 
-          class="nav-page" 
-          :class="{ 'active': isActive('/projectindex') }" 
+        <a
+          class="nav-page"
+          :class="{ active: isActive('/projectindex') }"
           @click="handleClick('/projectindex')"
-        >项目介绍</a>
-        <a 
-          class="nav-page" 
-          :class="{ 'active': isActive('/knowledge') }"
+        >
+          <img src="../../assets/img/xmjj.png" alt="项目介绍" />
+          项目介绍
+        </a>
+        <a
+          class="nav-page"
+          :class="{ active: isActive('/knowledge') }"
           @click="handleClick('/knowledge')"
-        >核心技术</a>
-        <a 
-          class="nav-page" 
-          :class="{ 'active': isActive('/basicoperate') }"
+        >
+          <img src="../../assets/img/syzd.png" alt="核心技术" />
+          核心技术
+        </a>
+        <a
+          class="nav-page"
+          :class="{ active: isActive('/basicoperate') }"
           @click="handleClick('/basicoperate')"
-        >技术实操</a>
-        <a 
-          class="nav-page" 
-          :class="{ 'active': isActive('/index') }"
+        >
+          <img src="../../assets/img/sycz.png" alt="技术实操" />
+          技术实操
+        </a>
+        <a
+          class="nav-page"
+          :class="{ active: isActive('/index') }"
           @click="handleClick('/index')"
-        >项目成果</a>
+        >
+          <img src="../../assets/img/sybg.png" alt="项目成果" />
+          项目成果
+        </a>
       </div>
     </div>
-    <div class="right">
-      <!-- <div class="search">
-        <a class="searchBox" to="/search"
-          ><i class="uil uil-search search-icon"></i
-        ></a>
-      </div> -->
-      <!-- <div class="cart" style="display: none"></div>
-        <i class="uil uil-shopping-bag"></i>
-        <span class="notification-counter">{{ cartItemCount }}</span>
-      </div> -->
-    </div>
+    <div class="right"></div>
   </div>
 </template>
 
@@ -54,10 +58,10 @@ const handleClick = (path: string) => {
 
 const isActive = (path: string) => {
   // 特殊处理 /lab 路由，让它也激活 /basicoperate
-  if (path === '/basicoperate' && route.path.startsWith('/lab')) {
+  if (path === "/basicoperate" && route.path.startsWith("/lab")) {
     return true;
   }
-  
+
   // 其他情况保持原来的逻辑
   return route.path.startsWith(path);
 };
@@ -85,10 +89,10 @@ export default {
 .navbar {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
   background-color: transparent;
   width: 100%;
-  height: 6em;
+  height: 12em;
   top: 0;
   left: 0;
   position: absolute;
@@ -102,8 +106,8 @@ export default {
   background-color: black;
 }
 .navbar:hover {
-  background-color: black;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  /* background-color: black; */
+  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); */
 }
 .navbar .left {
   display: flex;
@@ -114,10 +118,13 @@ export default {
   text-decoration: none;
   min-width: 200px;
 }
+.navbar .headpart {
+  display: flex;
+}
 .navbar .left img {
   display: flex;
   margin-left: 3em;
-  width: 1.1em;
+  width: 1.3em;
   margin-right: 0.4em;
   box-shadow: 0 3px 25px rgba(0, 0, 0, 0.3);
 }
@@ -125,7 +132,7 @@ export default {
   font-family: "Magisho", sans-serif;
   text-decoration: none;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .navbar .center {
   display: grid;
@@ -133,11 +140,11 @@ export default {
   justify-content: center;
   text-shadow: 1px 1px 2px black;
 }
-.navbar .center .logo {
+.navbar .logo {
   display: flex;
   color: #00eaff;
-  opacity: 0.8;
-  font-size: 30px;
+  color: #fff;
+  /* opacity: 0.8; */
   font-family: "Hjet", sans-serif;
   text-decoration: none;
   align-items: flex-end;
@@ -146,13 +153,9 @@ export default {
   font-size: 1.8em;
   letter-spacing: 0.1em;
   white-space: nowrap;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently*/
-  margin-bottom: 5px;
+  user-select: none;
+  margin-bottom: 25px;
+  padding-top: 24px;
 }
 .navbar .center .navlink {
   display: flex;
@@ -163,15 +166,6 @@ export default {
   /* margin-top: 1px; */
   text-decoration: none;
   letter-spacing: 0.2em;
-}
-.navbar .center .navlink .nav-page {
-  text-decoration: none;
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 0em 1.5em;
-  position: relative;
-  transition: 1s;
-  text-align: center;
 }
 .navbar .right {
   display: flex;
@@ -185,7 +179,7 @@ export default {
   height: 1em;
   display: flex;
   cursor: pointer;
-  padding: 1em 1em;
+  /* padding: 1em 1em; */
   background: #fff;
   border-radius: 5em;
   align-items: center;
@@ -195,7 +189,7 @@ export default {
 .navbar .right .searchBox .search-icon {
   color: black;
   font-size: 18px;
-  padding-right: 0.1em;
+  /* padding-right: 0.1em; */
 }
 .navbar .right .cart {
   height: 1em;
@@ -245,4 +239,60 @@ export default {
     justify-content: right;
   }
 } */
+
+.navlink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  /* margin-top: 20px; */
+}
+
+.nav-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  /* padding: 1em 1em; */
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  white-space: nowrap;
+  min-width: 240px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  /* padding: 1em 1.5em; */
+  position: relative;
+  transition: 1s;
+  text-align: center;
+}
+
+.nav-page img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.nav-page:hover {
+  cursor: pointer;
+  color: #00eaff;
+  border-color: rgba(147, 112, 219, 0.6);
+  box-shadow: 0 0 10px rgba(147, 112, 219, 0.3);
+}
+
+.nav-page.active {
+  color: #00eaff;
+  border-color: rgba(147, 112, 219, 0.8);
+  box-shadow: 0 0 15px rgba(147, 112, 219, 0.4);
+}
+
+.nav-page:hover img,
+.nav-page.active img {
+  transform: scale(1.1);
+}
 </style>

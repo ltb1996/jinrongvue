@@ -155,7 +155,7 @@ onMounted(() => {
 
 .sub-nav {
   position: absolute;
-  top: 110px;
+  top: 250px;
   width: 100%;
   z-index: 1;
   background: transparent;
@@ -189,7 +189,7 @@ onMounted(() => {
 
 .description-area {
   position: absolute;
-  top: 200px;
+  top: 320px;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;

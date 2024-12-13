@@ -107,7 +107,7 @@ const product = ref([
   /* z-index: -1; */
   display: flex;
   flex-direction: column;
-  padding-top: 180px;
+  padding-top: 300px;
   width: 100%;
   overflow-x: hidden;
   
