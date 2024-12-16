@@ -1,9 +1,9 @@
 <template>
   <div class="allStyle">
     <nav-bar></nav-bar>
-    <div v-if="!$route.path.includes('shoppage')" class="button-container">
+    <div v-if="!$route.path.includes('shoppage') && !$route.path.includes('kaohe')" class="button-container">
       <div class="cyber-button" @click="handleExamInfo">
-        <span class="cyber-button__text">实验介绍</span>
+        <span class="cyber-button__text">考核说明</span>
         <span class="cyber-button__glitch"></span>
       </div>
       <div class="cyber-button" @click="handleEnterLab">
@@ -22,7 +22,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const handleExamInfo = () => {
-  console.log("考核说明");
+  router.push('/basicoperate/kaohe');
 };
 
 const handleEnterLab = () => {

@@ -41,7 +41,13 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'shoppage',
+        name: 'shoppage',
         component: () => import('../views/basicoperate/shoppage.vue')
+      },
+      {
+        path: 'kaohe',
+        name: 'kaohe',
+        component: () => import('../views/basicoperate/kaohe.vue')
       }
     ]
   },

@@ -270,7 +270,7 @@ onMounted(() => {
 
 .jump-button {
   position: absolute;
-  bottom: 100px;
+  bottom: 64px;
   right: 100px;
   z-index: 2;
 }

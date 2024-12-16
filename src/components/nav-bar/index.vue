@@ -156,7 +156,7 @@ export default {
   user-select: none;
   margin-bottom: 25px;
   padding-top: 24px;
-  margin-left: 420px;
+  margin-left: 465px;
 }
 .navbar .center .navlink {
   display: flex;
