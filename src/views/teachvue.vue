@@ -63,7 +63,7 @@
 import { ref, onMounted, watch } from "vue";
 import vuell from "../assets/img/vuell.png";
 import javascriptpng from "../assets/img/jsjsjs.jpg";
-import Echartspng from "../assets/img/Echartspng.jpg";
+import Echartswhite from "../assets/img/Echartswhite.png";
 import Mockpng from "../assets/img/mockjs.jpg";
 import Axiosjpg from "../assets/img/axiosjpg.jpg";
 import MockJsVideo from "../assets/img/mockjs.mp4";
@@ -111,7 +111,7 @@ const products: Product[] = [
   },
   {
     id: 3,
-    src: Echartspng,
+    src: Echartswhite,
     brand: "项目技术核心三",
     title: "Echarts",
     videourl: EchartsVideo,

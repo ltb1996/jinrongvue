@@ -143,7 +143,7 @@ export default {
 .navbar .logo {
   display: flex;
   color: #00eaff;
-  color: #fff;
+  /* color: #fff; */
   /* opacity: 0.8; */
   font-family: "Hjet", sans-serif;
   text-decoration: none;
@@ -156,6 +156,7 @@ export default {
   user-select: none;
   margin-bottom: 25px;
   padding-top: 24px;
+  margin-left: 420px;
 }
 .navbar .center .navlink {
   display: flex;

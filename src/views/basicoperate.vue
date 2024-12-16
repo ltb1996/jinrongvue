@@ -46,7 +46,8 @@ const handleEnterLab = () => {
   justify-content: center;
   align-items: center;
   gap: 60px;
-  height: calc(100vh - 200px);
+  /* height: calc(100vh - 200px); */
+  margin-top: 450px;
 }
 
 .cyber-button {

@@ -31,7 +31,7 @@ import { ref } from "vue";
 import vuell from "../assets/img/vuell.png";
 import javascriptpng from "../assets/img/jsjsjs.jpg";
 // import scatterGL from "../assets/img/scatterGL.jpg";
-import Echartspng from "../assets/img/Echartspng.jpg";
+import Echartswhite from "../assets/img/Echartswhite.png";
 import Axiosjpg from "../assets/img/axiosjpg.jpg";
 import Mockpng from "../assets/img/mockjs.jpg";
 import { useRouter } from 'vue-router';
@@ -67,7 +67,7 @@ const product = ref([
     brand: "Echarts",
     description: "选择ECharts进行项目开发，因其强大的图表渲染能力、丰富的可视化类型和高度的可定制性。ECharts支持多种图表组合，易于集成和使用，适用于复杂的数据显示需求，且文档详尽，社区活跃，是数据可视化项目的理想选择。",
     price: "重要程度: ★★★★★",
-    src: Echartspng,
+    src: Echartswhite,
     gender: "professional",
   },
   {

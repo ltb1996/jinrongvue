@@ -24,7 +24,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import vuell from "@/assets/img/vuell.png";
 import javascriptpng from "@/assets/img/jsjsjs.jpg";
-import Echartspng from "@/assets/img/Echartspng.jpg";
+import Echartswhite from "@/assets/img/Echartswhite.png";
 import Axiosjpg from "@/assets/img/axiosjpg.jpg";
 import Mockpng from "@/assets/img/mockjs.jpg";
 
@@ -53,7 +53,7 @@ const cardList = ref([
     brand: "Echarts实验",
     description: "本实验将指导你使用ECharts创建各类图表,掌握数据可视化的基本技能。通过实例学习ECharts的配置和使用方法。",
     price: "难度: ★★★★",
-    src: Echartspng,
+    src: Echartswhite,
   },
   {
     id: 4,
@@ -88,7 +88,7 @@ const handleCardClick = (id: number) => {
 .shop-page {
   display: flex;
   flex-direction: column;
-  margin-top: 200px;
+  margin-top: 300px;
   width: 100%;
   overflow-x: hidden;
 }
@@ -159,7 +159,7 @@ const handleCardClick = (id: number) => {
 
 .return-button {
   position: absolute;
-  bottom: 150px;
+  bottom: 50px;
   right: 135px;
   background-color: #00eaff;
   color: #fff;
