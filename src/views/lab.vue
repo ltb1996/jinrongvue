@@ -1,6 +1,6 @@
 <template>
   <div class="allStyle">
-    <nav-bar></nav-bar>
+    <nav-small-bar></nav-small-bar>
     <div class="lab-container">
       <div class="breadcrumb-container">
         <el-breadcrumb separator="/">
@@ -75,10 +75,7 @@
           </template>
         </div>
       </div>
-      <div
-        v-if="currentSection === 'implementation' && currentLab"
-        class="lab-content"
-      >
+      <div v-if="currentSection === 'implementation' && currentLab" class="lab-content">
         <h1>{{ currentLab.title }}</h1>
         <div
           class="lab-section"
@@ -98,7 +95,7 @@
             </el-button>
           </div>
           <div v-if="section.result" class="result-block">
-            <h3>运��结果：</h3>
+            <h3>运行结果：</h3>
             <div
               :class="[
                 'result-content',
@@ -120,48 +117,50 @@
         </div>
       </div>
       <div v-if="currentSection === 'example'" class="lab-content">
-    <h1>{{ currentLab?.title }} - 技术习题</h1>
-    <div class="quiz-content">
-      <template v-if="currentLab?.title && labQuestions[currentLab.title]">
-        <div 
-          v-for="question in labQuestions[currentLab.title]" 
-          :key="question.id" 
-          class="question-block"
-        >
-          <h3>{{ question.id }}. {{ question.title }}</h3>
-          <div class="options-list">
-            <div 
-              v-for="(option, index) in question.options" 
-              :key="index"
-              class="option-item"
-              :class="{
-                'selected': userAnswers[currentLab.title]?.[question.id] === index,
-                'correct': showResults && index === question.correctAnswer,
-                'wrong': showResults && userAnswers[currentLab.title]?.[question.id] === index && index !== question.correctAnswer
-              }"
-              @click="!showResults && handleAnswer(question.id, index)"
+        <h1>{{ currentLab?.title }} - 技术习题</h1>
+        <div class="quiz-content">
+          <template v-if="currentLab?.title && labQuestions[currentLab.title]">
+            <div
+              v-for="question in labQuestions[currentLab.title]"
+              :key="question.id"
+              class="question-block"
             >
-              <span class="option-label">{{ ['A', 'B', 'C', 'D'][index] }}.</span>
-              {{ option }}
+              <h3>{{ question.id }}. {{ question.title }}</h3>
+              <div class="options-list">
+                <div
+                  v-for="(option, index) in question.options"
+                  :key="index"
+                  class="option-item"
+                  :class="{
+                    selected:
+                      userAnswers[currentLab.title]?.[question.id] === index,
+                    correct: showResults && index === question.correctAnswer,
+                    wrong:
+                      showResults &&
+                      userAnswers[currentLab.title]?.[question.id] === index &&
+                      index !== question.correctAnswer,
+                  }"
+                  @click="!showResults && handleAnswer(question.id, index)"
+                >
+                  <span class="option-label"
+                    >{{ ["A", "B", "C", "D"][index] }}.</span
+                  >
+                  {{ option }}
+                </div>
+              </div>
             </div>
+          </template>
+          <!-- 只在最后一个实验（Axios实验）显示提交答案按钮 -->
+          <div class="quiz-actions" v-if="isLastLab">
+            <el-button type="primary" @click="checkAnswers" v-if="!showResults"
+              >提交答案</el-button
+            >
+            <el-button type="primary" @click="resetQuiz" v-else
+              >重新作答</el-button
+            >
           </div>
         </div>
-      </template>
-      <!-- 只在最后一个实验（Axios实验）显示提交答案按钮 -->
-      <div class="quiz-actions" v-if="isLastLab">
-        <el-button 
-          type="primary" 
-          @click="checkAnswers" 
-          v-if="!showResults"
-        >提交答案</el-button>
-        <el-button 
-          type="primary" 
-          @click="resetQuiz" 
-          v-else
-        >重新作答</el-button>
       </div>
-    </div>
-  </div>
       <div class="section-navigation">
         <el-button type="primary" @click="handlePrevSection">上一步</el-button>
         <el-button type="primary" @click="handleNextSection">下一步</el-button>
@@ -171,6 +170,7 @@
 </template>
 
 <script setup lang="ts">
+import NavSmallBar from "../components/navsmall-bar/index.vue";
 import NavBar from "../components/nav-bar/index.vue";
 import { ref, onMounted, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -222,7 +222,7 @@ const labIntros: Record<string, LabIntro> = {
   Vue基础实验: {
     title: "Vue.js 简介",
     description:
-      "Vue.js 是一个用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。",
+      "Vue.js 是一个用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。",
     features: [
       "响应式数据绑定",
       "组件化开发",
@@ -257,7 +257,7 @@ const labIntros: Record<string, LabIntro> = {
   "Mock.js实验": {
     title: "Mock.js 简介",
     description:
-      "Mock.js 是一个模拟数据生成器，可以帮助前端开发者独立于后端进行开发。它可以拦截 Ajax 请求，返回模拟的响应数据。",
+      "Mock.js 是一个模拟数据生成器，可以帮助前端开发者独立于后端进行开发。它可以拦截 Ajax 请求，返回模拟响应数据。",
     features: [
       "数据模板定义",
       "随机数据生成",
@@ -297,7 +297,7 @@ const labTheories: Record<string, LabTheory> = {
       {
         name: "组件化",
         description:
-          "Vue 的组件系统提供了一种抽象，让我们可以使用小、独立和通常可复用的组件构建大型应用。",
+          "Vue 的组件系统提供了一种抽象，让我们可以使用小独和通常可复用的组件构建大型应用。",
       },
     ],
   },
@@ -336,7 +336,7 @@ const labTheories: Record<string, LabTheory> = {
       {
         name: "闭包",
         description:
-          "闭包允许函数访问并操作函数外部的变量，是实现数据私有化和模块化的重要机制。",
+          "闭包允许函数访问并操作函数外部的变量，是实现数据私有和模块化的要机制。",
       },
     ],
   },
@@ -365,7 +365,7 @@ const labTheories: Record<string, LabTheory> = {
       {
         name: "请求处理",
         description:
-          "基于 Promise 封装 XMLHttpRequest，提供统一的接口处��各种 HTTP 请求。",
+          "基于 Promise 封装 XMLHttpRequest，提供统一的接口处理各种 HTTP 请求。",
       },
       {
         name: "拦截器链",
@@ -491,7 +491,7 @@ axios.get('https://api.example.com/data')
 ];
 
 const labQuestions: Record<string, Question[]> = {
-  Vue基础实验: [
+  "Vue基础实验": [
     {
       id: 1,
       title: "Vue中的数据双向绑定是通过以下哪个指令实现的？",
@@ -501,11 +501,11 @@ const labQuestions: Record<string, Question[]> = {
     {
       id: 2,
       title: "Vue组件中的 setup() 函数在什么时候执行？",
-      options: ["组件更新时", "组件创建前", "组件销毁时", "组件挂载后"],
+      options: ["组更新时", "组件创建前", "组件销毁时", "组件挂载后"],
       correctAnswer: 1,
     },
   ],
-  JavaScript实验: [
+  "JavaScript实验": [
     {
       id: 1,
       title: "以下哪个方法可以向数组末尾添加元素？",
@@ -519,7 +519,7 @@ const labQuestions: Record<string, Question[]> = {
       correctAnswer: 2,
     },
   ],
-  ECharts实验: [
+  "ECharts实验": [
     {
       id: 1,
       title: "ECharts中，以下哪个配置项用于设置图表标题？",
@@ -543,11 +543,11 @@ const labQuestions: Record<string, Question[]> = {
     {
       id: 2,
       title: "Mock.js数据模板中，|+1 表示什么？",
-      options: ["随机加1", "自增1", "加法运算", "数组长度加1"],
+      options: ["随机加1", "自增1", "加法运算", "���组长度加1"],
       correctAnswer: 1,
     },
   ],
-  Axios实验: [
+  "Axios实验": [
     {
       id: 1,
       title: "Axios发送请求后返回的是什么类型的对象？",
@@ -658,6 +658,14 @@ const currentSection = ref("intro"); // 默认显示技术介绍部分
 
 const switchSection = (section: string) => {
   currentSection.value = section;
+  // 添加滚动回顶部的逻辑
+  const container = document.querySelector('.lab-container');
+  if (container) {
+    container.scrollTo({
+      top: 0,
+      behavior: 'smooth' // 使用平滑滚动效果
+    });
+  }
 };
 
 const sectionOrder = ["intro", "theory", "implementation", "example"];
@@ -697,7 +705,7 @@ const handleNextSection = () => {
     // 如果是最后一个部分(example)
     const currentId = Number(route.params.id);
     if (currentId < 5) {
-      // 如果���是最后一个实验
+      // 如果是最一个实验
       // 跳转到下一个实验的第一个部分(intro)
       router.push(`/lab/${currentId + 1}`);
       currentSection.value = "intro";
@@ -793,13 +801,16 @@ const resetQuiz = () => {
 }
 
 .lab-container {
-  margin-top: 100px;
+  margin-top: 220px;
   padding: 20px;
   color: #fff;
-  height: calc(100vh - 120px);
+  min-height: calc(100vh - 360px);
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 120px;
 }
 
 .lab-container::-webkit-scrollbar {
@@ -810,10 +821,10 @@ const resetQuiz = () => {
   max-width: 1200px;
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 234, 255, 0.3);
   border-radius: 8px;
   padding: 20px;
-  padding-bottom: 40px;
+  margin-bottom: 20px;
+  height: auto;
 }
 
 .code-block {
@@ -858,17 +869,33 @@ const resetQuiz = () => {
   overflow: hidden;
 }
 
-/* .navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  padding: 0 20px;
-} */
-
 .breadcrumb-container {
+  position: fixed;
+  top: 140px;
+  left: 0;
+  right: 0;
+  z-index: 100;
   max-width: 1200px;
-  margin: 0 auto 20px;
-  padding: 10px 0px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.sub-breadcrumb-container {
+  position: fixed;
+  top: 180px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 8px;
+  /* 移除背景色和模糊效果 */
+  /* background: rgba(0, 0, 0, 0.8); */
+  /* backdrop-filter: blur(10px); */
+  /* 移除边框 */
+  /* border: 1px solid rgba(0, 234, 255, 0.3); */
 }
 
 :deep(.el-breadcrumb) {
@@ -924,19 +951,6 @@ const resetQuiz = () => {
   margin: 10px 0;
 }
 
-.sub-breadcrumb-container {
-  max-width: 1200px;
-  margin: 0 auto 20px;
-  padding: 10px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 10px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 234, 255, 0.3);
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 234, 255, 0.1);
-}
-
 .active-breadcrumb :deep(.el-breadcrumb__inner) {
   color: #00eaff !important;
   cursor: pointer;
@@ -986,11 +1000,17 @@ const resetQuiz = () => {
 }
 
 .section-navigation {
-  max-width: 1200px;
-  margin: 20px auto;
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-20%);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
   padding: 0 20px;
+  z-index: 100;
 }
 
 .section-navigation .el-button {
