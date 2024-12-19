@@ -45,15 +45,20 @@
           <template v-if="currentLab?.title && labIntros[currentLab.title]">
             <h2>{{ labIntros[currentLab.title].title }}</h2>
             <p>{{ labIntros[currentLab.title].description }}</p>
-            <h2>主要特性</h2>
-            <ul>
-              <li
-                v-for="(feature, index) in labIntros[currentLab.title].features"
-                :key="index"
-              >
-                {{ feature }}
-              </li>
-            </ul>
+            <div class="intro-flex-container">
+              <div class="intro-image-container">
+                <h2>{{ labIntros[currentLab.title].biaoti }}架构图</h2>
+                <img :src="labIntros[currentLab.title].image" alt="技术介绍图片" class="intro-image">
+              </div>
+              <div class="intro-features-container">
+                <h2>主要特性</h2>
+                <ul>
+                  <li v-for="(feature, index) in labIntros[currentLab.title].features" :key="index">
+                    {{ feature }}
+                  </li>
+                </ul>
+              </div>
+            </div>
           </template>
         </div>
       </div>
@@ -150,15 +155,11 @@
               </div>
             </div>
           </template>
-          <!-- 只在最后一个实验（Axios实验）显示提交答案按钮 -->
-          <div class="quiz-actions" v-if="isLastLab">
-            <el-button type="primary" @click="checkAnswers" v-if="!showResults"
-              >提交答案</el-button
-            >
-            <el-button type="primary" @click="resetQuiz" v-else
-              >重新作答</el-button
-            >
-          </div>
+          <div class="quiz-actions">
+            <el-button type="primary" @click="checkAnswers" v-if="!showResults">提交答案</el-button>
+            <el-button type="primary" @click="resetQuiz" v-else>重新作答</el-button>
+            <el-button type="success" @click="exportQuestions">导出习题</el-button>
+          </div>  
         </div>
       </div>
       <div class="section-navigation">
@@ -175,6 +176,7 @@ import NavBar from "../components/nav-bar/index.vue";
 import { ref, onMounted, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import echartsresult from "../assets/img/echartsresult.png";
+import vueall from "../assets/img/vueall.png";
 
 const route = useRoute();
 const router = useRouter();
@@ -221,18 +223,21 @@ const isLastLab = computed(() => {
 const labIntros: Record<string, LabIntro> = {
   Vue基础实验: {
     title: "Vue.js 简介",
+    biaoti: "Vue",
     description:
-      "Vue.js 是一个用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。",
+      "Vue.js 是一个用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。",
     features: [
-      "响应式数据绑定",
-      "组件化开发",
-      "虚拟 DOM",
-      "生命周期钩子",
-      "指令系统",
+      "响应式数据绑定：Vue 通过数据绑定机制，自动将数据的变化反映到视图上。",
+      "组件化开发：Vue 的组件系统允许开发者将 UI 分解为独立、可复用的组件。",
+      "虚拟 DOM：Vue 使用虚拟 DOM 来优化实际 DOM 操作，通过 diff 算法计算出最小的更新范围，从而提高性能。",
+      "生命周期钩子：Vue 提供了生命周期钩子，允许开发者在特定阶段执行自定义逻辑。",
+      "指令系统：Vue 提供了丰富的指令系统，允许开发者直接操作 DOM。",
     ],
+    image: vueall,
   },
   ECharts实验: {
     title: "ECharts 简介",
+    biaoti: "ECharts",
     description:
       "ECharts 是一个使用 JavaScript 实现的开源可视化库，提供直观，交互丰富，可高度个性化定制的数据可视化图表。",
     features: [
@@ -244,6 +249,7 @@ const labIntros: Record<string, LabIntro> = {
   },
   JavaScript实验: {
     title: "JavaScript 简介",
+    biaoti: "JavaScript",
     description:
       "JavaScript 是一种具有函数优先特性的轻量级、解释型或即时编译型的编程语言。它是最流行的 Web 脚本语言，被广泛应用于客户端和服务器端开发。",
     features: [
@@ -256,6 +262,7 @@ const labIntros: Record<string, LabIntro> = {
   },
   "Mock.js实验": {
     title: "Mock.js 简介",
+    biaoti: "Mock.js",
     description:
       "Mock.js 是一个模拟数据生成器，可以帮助前端开发者独立于后端进行开发。它可以拦截 Ajax 请求，返回模拟响应数据。",
     features: [
@@ -268,13 +275,14 @@ const labIntros: Record<string, LabIntro> = {
   },
   Axios实验: {
     title: "Axios 简介",
+    biaoti: "Axios",
     description:
       "Axios 是一个基于 Promise 的 HTTP 客户端，可以用于浏览器和 Node.js。它提供一个简单而强大的方式来发送 HTTP 请求。",
     features: [
       "支持 Promise API",
       "拦截请求和响应",
       "转换请求和响应数据",
-      "自动转换 JSON 数据",
+      "���动转换 JSON 数据",
       "客户端支持防御 XSRF",
     ],
   },
@@ -297,7 +305,7 @@ const labTheories: Record<string, LabTheory> = {
       {
         name: "组件化",
         description:
-          "Vue 的组件系统提供了一种抽象，让我们可以使用小独和通常可复用的组件构建大型应用。",
+          "Vue 的组件系统提供了一种抽象，让我们可以使小独和通可复用的组件构建大型应用。",
       },
     ],
   },
@@ -501,9 +509,27 @@ const labQuestions: Record<string, Question[]> = {
     {
       id: 2,
       title: "Vue组件中的 setup() 函数在什么时候执行？",
-      options: ["组更新时", "组件创建前", "组件销毁时", "组件挂载后"],
+      options: ["组��更新时", "组件创前", "组件销毁时", "组件挂载后"],
       correctAnswer: 1,
     },
+    {
+      id: 3,
+      title: "Vue 3中,如何定义响应式数据？",
+      options: ["使用data选项", "使用ref()/reactive()", "使用computed", "使用watch"],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      title: "Vue 3中的组合式API主要解决了什么问题？",
+      options: ["性能问题", "样式问题", "代码复用和组织问题", "路由问题"],
+      correctAnswer: 2,
+    },
+    {
+      id: 5,
+      title: "在Vue 3中,如何获取模板引用？",
+      options: ["使用$refs", "使用ref()定义并在模板中使用ref属性", "使用querySelector", "使用getElementById"],
+      correctAnswer: 1,
+    }
   ],
   "JavaScript实验": [
     {
@@ -518,6 +544,39 @@ const labQuestions: Record<string, Question[]> = {
       options: ["Array", "Object", "Symbol", "Function"],
       correctAnswer: 2,
     },
+    {
+      id: 3,
+      title: "JavaScript中的闭包是什么？",
+      options: [
+        "一个对象",
+        "一个函数",
+        "一个能访问自由变量的函数",
+        "一个类"
+      ],
+      correctAnswer: 2,
+    },
+    {
+      id: 4,
+      title: "Promise的状态有哪些？",
+      options: [
+        "running/stopped",
+        "pending/fulfilled/rejected",
+        "start/end",
+        "success/error"
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 5,
+      title: "以下哪个不是JavaScript的事件循环中的任务队列？",
+      options: [
+        "宏任务队列",
+        "微任务队列",
+        "优先任务队列",
+        "定时器队列"
+      ],
+      correctAnswer: 2,
+    }
   ],
   "ECharts实验": [
     {
@@ -532,6 +591,39 @@ const labQuestions: Record<string, Question[]> = {
       options: ["SVG", "Canvas", "WebGL", "HTML"],
       correctAnswer: 1,
     },
+    {
+      id: 3,
+      title: "ECharts中如何实现图表的自适应调整大小？",
+      options: [
+        "自动调整",
+        "使用resize()方法",
+        "设置responsive选项",
+        "使用scale()方法"
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      title: "ECharts中的dataset主要用于什么？",
+      options: [
+        "设置样式",
+        "管理动画",
+        "数据集中管理",
+        "控制交互"
+      ],
+      correctAnswer: 2,
+    },
+    {
+      id: 5,
+      title: "在ECharts中，如何实现多个图表的联动？",
+      options: [
+        "使用connect()",
+        "设置link选项",
+        "使用connect选项",
+        "自动联动"
+      ],
+      correctAnswer: 0,
+    }
   ],
   "Mock.js实验": [
     {
@@ -546,6 +638,39 @@ const labQuestions: Record<string, Question[]> = {
       options: ["随机加1", "自增1", "加法运算", "数组长度加1"],
       correctAnswer: 1,
     },
+    {
+      id: 3,
+      title: "Mock.js如何设置数据生成的延迟时间？",
+      options: [
+        "使用timeout选项",
+        "使用delay选项",
+        "使用setTimeout",
+        "使用time选项"
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      title: "Mock.js中如何生成指定范围内的随机数？",
+      options: [
+        "@random",
+        "@integer(min,max)",
+        "@number",
+        "@range"
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 5,
+      title: "Mock.js中如何拦截Ajax请求？",
+      options: [
+        "自动拦截",
+        "使用Mock.mock(url, template)",
+        "使用Mock.intercept()",
+        "使用Mock.setup()"
+      ],
+      correctAnswer: 1,
+    }
   ],
   "Axios实验": [
     {
@@ -561,10 +686,43 @@ const labQuestions: Record<string, Question[]> = {
         "axios.get(url).then()",
         "axios.post(url).then()",
         "axios.request(url).then()",
-        "axios.fetch(url).then()",
+        "axios.fetch(url).then()"
       ],
       correctAnswer: 0,
     },
+    {
+      id: 3,
+      title: "Axios如何设置请求拦截器？",
+      options: [
+        "axios.intercept()",
+        "axios.interceptors.request.use()",
+        "axios.middleware()",
+        "axios.use()"
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      title: "Axios如何取消请求？",
+      options: [
+        "使用cancel token",
+        "使用abort()",
+        "使用stop()",
+        "使用close()"
+      ],
+      correctAnswer: 0,
+    },
+    {
+      id: 5,
+      title: "Axios默认的请求超时时间是多少？",
+      options: [
+        "0ms(无超时)",
+        "1000ms",
+        "5000ms",
+        "10000ms"
+      ],
+      correctAnswer: 0,
+    }
   ],
 };
 
@@ -670,31 +828,6 @@ const switchSection = (section: string) => {
 
 const sectionOrder = ["intro", "theory", "implementation", "example"];
 
-// const handleNextSection = () => {
-//   // const currentIndex = sectionOrder.indexOf(currentSection.value);
-//   // if (currentIndex < sectionOrder.length - 1) {
-//   //   currentSection.value = sectionOrder[currentIndex + 1];
-//   // }
-//   if (currentSection.value === 'intro') {
-//     // 只有当是Vue基础实验时才跳转到shoppage
-//     if (currentLab.value?.title === 'Vue基础实验') {
-//       router.push('/basicoperate/shoppage');
-//     } else {
-//       // 其他实验跳转到上一个实验
-//       const currentId = Number(route.params.id);
-//       const prevId = currentId - 1;
-//       if (prevId >= 1) {
-//         router.push(`/lab/${prevId}`);
-//       }
-//     }
-//   } else {
-//     const currentIndex = sectionOrder.indexOf(currentSection.value);
-//     if (currentIndex > 0) {
-//       currentSection.value = sectionOrder[currentIndex - 1];
-//     }
-//   }
-// };
-
 const handleNextSection = () => {
   const currentIndex = sectionOrder.indexOf(currentSection.value);
 
@@ -715,28 +848,6 @@ const handleNextSection = () => {
     }
   }
 };
-
-// const handlePrevSection = () => {
-//   if (currentSection.value === 'intro') {
-//     // 只有当是Vue基础实验时才跳转到shoppage
-//     if (currentLab.value?.title === 'Vue基础实验') {
-//       router.push('/basicoperate/shoppage');
-//     } else {
-//       // 其他实验跳转到上一个实验
-//       const currentId = Number(route.params.id);
-//       const prevId = currentId - 1;
-//       if (prevId >= 1) {
-//         router.push(`/lab/${prevId}`);
-//       }
-//     }
-//   } else {
-//     const currentIndex = sectionOrder.indexOf(currentSection.value);
-//     if (currentIndex > 0) {
-//       currentSection.value = sectionOrder[currentIndex - 1];
-//     }
-//   }
-// };
-
 // 相应地，也需要修改handlePrevSection函数以保持一致性
 const handlePrevSection = () => {
   const currentIndex = sectionOrder.indexOf(currentSection.value);
@@ -745,7 +856,7 @@ const handlePrevSection = () => {
   if (currentIndex > 0) {
     currentSection.value = sectionOrder[currentIndex - 1];
   } else {
-    // 如果是第一个部分(intro)
+    // 如果是第��个部分(intro)
     const currentId = Number(route.params.id);
     if (currentId > 1) {
       // 如果不是第一个实验
@@ -786,6 +897,55 @@ const resetQuiz = () => {
     userAnswers.value[currentLab.value.title] = {};
   }
   showResults.value = false;
+};
+
+const exportQuestions = () => {
+  // 收集所有实验的题目
+  const allQuestions = {
+    'Vue基础实验': labQuestions['Vue基础实验'],
+    'JavaScript实验': labQuestions['JavaScript实验'],
+    'ECharts实验': labQuestions['ECharts实验'],
+    'Mock.js实验': labQuestions['Mock.js实验'],
+    'Axios实验': labQuestions['Axios实验']
+  };
+
+  // 格式化题目数据
+  const formattedData = Object.entries(allQuestions).map(([experimentName, questions]) => {
+    const formattedQuestions = questions.map(q => {
+      return {
+        题目: q.title,
+        选项A: q.options[0],
+        选项B: q.options[1],
+        选项C: q.options[2],
+        选项D: q.options[3],
+        正确答案: ['A', 'B', 'C', 'D'][q.correctAnswer - 1]
+      };
+    });
+    return {
+      实验名称: experimentName,
+      习题: formattedQuestions
+    };
+  });
+
+  // 转换为JSON字符串
+  const jsonString = JSON.stringify(formattedData, null, 2);
+  
+  // 创建Blob对象
+  const blob = new Blob([jsonString], { type: 'application/json' });
+  
+  // 创建下载链接
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = '实验习题集.json';
+  
+  // 触发下载
+  document.body.appendChild(link);
+  link.click();
+  
+  // 清理
+  document.body.removeChild(link);
+  window.URL.revokeObjectURL(url);
 };
 </script>
 
@@ -974,18 +1134,21 @@ const resetQuiz = () => {
 .intro-content h2,
 .theory-content h2 {
   color: #00eaff;
-  margin: 20px 0 15px;
+  margin: 15px 0 15px;
 }
 
 .intro-content ul,
 .theory-content ul {
-  padding-left: 20px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
 }
 
 .intro-content li,
 .theory-content li {
   margin: 8px 0;
+}
+.intro-image {
+  width: 700px;
+  height: 600px;
 }
 
 .theory-section {
@@ -1001,7 +1164,7 @@ const resetQuiz = () => {
 
 .section-navigation {
   position: fixed;
-  bottom: 60px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-20%);
   display: flex;
@@ -1109,9 +1272,56 @@ const resetQuiz = () => {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  gap: 20px;
 }
 
 .quiz-actions .el-button {
-  width: 200px;
+  width: 150px;
+}
+
+.intro-flex-container {
+  display: flex;
+  gap: 40px;
+  /* margin-top: 20px; */
+  align-items: flex-start;
+}
+
+.intro-image-container {
+  flex: 1;
+}
+
+.intro-features-container {
+  flex: 1;
+  background: rgba(0, 234, 255, 0.1);
+  padding: 13px 13px 13px 18px;
+  border-radius: 8px;
+  /* min-height: 600px; */
+  display: flex;
+  flex-direction: column;
+}
+
+.intro-image {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 234, 255, 0.3);
+}
+
+.intro-features-container ul {
+  /* margin-top: 20px; */
+}
+
+.intro-features-container li {
+  margin: 15px 0;
+  padding: 10px;
+  background: rgba(0, 234, 255, 0.05);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.intro-features-container li:hover {
+  background: rgba(0, 234, 255, 0.1);
+  transform: translateX(5px);
 }
 </style>

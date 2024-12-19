@@ -21,6 +21,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     Components({
       resolvers: [ElementPlusResolver()],
     }),
+    
     ElementPlus({
       // useSource: true
     })
