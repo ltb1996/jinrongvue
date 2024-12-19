@@ -543,7 +543,7 @@ const labQuestions: Record<string, Question[]> = {
     {
       id: 2,
       title: "Mock.js数据模板中，|+1 表示什么？",
-      options: ["随机加1", "自增1", "加法运算", "���组长度加1"],
+      options: ["随机加1", "自增1", "加法运算", "数组长度加1"],
       correctAnswer: 1,
     },
   ],

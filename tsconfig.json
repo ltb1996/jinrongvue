@@ -27,7 +27,8 @@
       "api/*": [
         "src/api/*"
       ],
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/**/*.ts",
