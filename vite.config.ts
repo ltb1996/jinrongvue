@@ -6,7 +6,9 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 //https://github.com/element-plus/unplugin-element-plus/blob/HEAD/README.zh-CN.md
-import * as ElementPlus from 'unplugin-element-plus/vite'
+// import * as ElementPlus from 'unplugin-element-plus/vite'
+// import { default as ElementPlusPlugin } from 'unplugin-element-plus/vite'
+import ElementPlus from 'unplugin-element-plus/vite'
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 
   // const env = loadEnv(mode, process.cwd(), '')
