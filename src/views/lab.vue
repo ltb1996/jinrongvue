@@ -75,6 +75,7 @@
               >
                 <h3>{{ index + 1 }}. {{ principle.name }}</h3>
                 <p>{{ principle.description }}</p>
+                <img :src="principle.vuedetailimg" alt="技术介绍图片" class="vuedetailimg">
               </template>
             </div>
           </template>
@@ -172,11 +173,15 @@
 
 <script setup lang="ts">
 import NavSmallBar from "../components/navsmall-bar/index.vue";
-import NavBar from "../components/nav-bar/index.vue";
 import { ref, onMounted, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import echartsresult from "../assets/img/echartsresult.png";
 import vueall from "../assets/img/vueall.png";
+import vuesxbd1 from "../assets/img/vuesxbd1.png";
+import vuezjhkf from "../assets/img/vuezjhkf.jpeg";
+import vuexndom from "../assets/img/vuexndom.png";
+import vuesmzq from "../assets/img/vuesmzq.png";
+import vuezhiling from "../assets/img/vuezhiling.png";
 
 const route = useRoute();
 const router = useRouter();
@@ -192,6 +197,8 @@ interface LabIntro {
   title: string;
   description: string;
   features: string[];
+  biaoti: string;
+  image: string;
 }
 
 interface LabTheory {
@@ -199,6 +206,7 @@ interface LabTheory {
   principles: {
     name: string;
     description: string;
+    vuedetailimg: string;
   }[];
 }
 
@@ -246,6 +254,7 @@ const labIntros: Record<string, LabIntro> = {
       "强大的交互能力",
       "多种数据格式支持",
     ],
+    image: echartsresult,
   },
   JavaScript实验: {
     title: "JavaScript 简介",
@@ -259,6 +268,7 @@ const labIntros: Record<string, LabIntro> = {
       "事件驱动",
       "跨平台支持",
     ],
+    image: vueall,
   },
   "Mock.js实验": {
     title: "Mock.js 简介",
@@ -272,6 +282,7 @@ const labIntros: Record<string, LabIntro> = {
       "支持自定义数据规则",
       "完善的中文数据支持",
     ],
+    image: vueall,
   },
   Axios实验: {
     title: "Axios 简介",
@@ -282,9 +293,10 @@ const labIntros: Record<string, LabIntro> = {
       "支持 Promise API",
       "拦截请求和响应",
       "转换请求和响应数据",
-      "���动转换 JSON 数据",
+      "动转换 JSON 数据",
       "客户端支持防御 XSRF",
     ],
+    image: vueall,
   },
 };
 
@@ -293,19 +305,79 @@ const labTheories: Record<string, LabTheory> = {
     title: "Vue 的核心原理",
     principles: [
       {
-        name: "响应式系统",
+        name: "响应式数据绑定",
         description:
-          "Vue 的响应式系统基于 ES5 的 Object.defineProperty 或 ES6 的 Proxy，通过对数据的劫持现视图的自动更新。",
+          `Vue 2： 使用其自定义的Object.defineProperty对象以及对象属性的劫持+发布订阅模式来实现双向数据绑定。只要数据发生变化直接通知变化 并驱动视图更新。
+          Vue 2代码示例：
+          Object.defineProperty(obj, "name", { get:()=> {}, set:()=> {} })
+Vue 3：对底层进行了大量优化，包括使用了 ES6 的 Proxy 进行数据劫持，从而使得双向数据绑定更加高效。
+          Vue 3代码示例：
+          let p =new Proxy(obj,{get:(target,prop,p)=>{},set:(target, prop, vaule, p)=>{}})`,
+        vuedetailimg: vuesxbd1,
+      },
+      {
+        name: "组件化开发",
+        description:
+          `Vue.js 组件是一个可复用的代码模块，可以在 Vue.js 应用程序中使用。组件包括 HTML 模板、JavaScript 代码和 CSS 样式，并且可以包含其他组件。
+主要优势包括：
+模块化：Vue.js 组件使得应用程序变得更易于管理和维护，可以将应用程序分解为多个小模块，每个模块都有自己的功能和样式。
+可重用性：组件化开发使得开发人员可以编写可重用的代码片段，可以在不同的项目中使用，并且可以在同一应用程序中多次使用。
+维护性：组件化开发使得代码更加模块化，更易于维护和测试。
+性能：在 Vue.js 中使用组件可以提高应用程序的性能，因为它可以在需要时延迟加载组件。
+代码示例：
+          <template>
+            <div>
+              <h1>{{ title }}</h1>
+              <!-- 3.在template中以标记的语法使用子组件 -->
+              <TabMenu></TabMenu>
+              <Data></Data>
+            </div>
+          </template>
+          import TabMenu from '@/components/TabMenu.vue';  
+          import Data from '@/components/Data.vue';`,
+        vuedetailimg: vuezjhkf,
       },
       {
         name: "虚拟 DOM",
         description:
-          "Vue 使用虚拟 DOM 来优化实际 DOM 操作，通过 diff 算法计算出最小的更新范围，从而提高性能。",
+          `什么是虚拟DOM？
+虚拟DOM（Virtual DOM）是Vue框架中的一个重要概念。它是一种用JavaScript对象来表示真实DOM结构的轻量级副本。当数据发生变化时，Vue会通过比较虚拟DOM和真实DOM的差异，然后只对差异部分进行更新，从而提高页面渲染的效率。
+为什么要使用虚拟DOM？
+使用虚拟DOM的主要目的是为了提高页面的性能和用户体验。传统的DOM操作是直接操作真实的DOM元素，当数据发生变化时，需要频繁地修改DOM，这样会导致页面的重绘和回流，从而降低了页面的渲染效率。而使用虚拟DOM可以将频繁的DOM操作转化为对虚拟DOM的操作，只有在必要的时候才会更新真实DOM，从而减少了不必要的性能损耗。
+虚拟DOM的工作原理是什么？
+虚拟DOM的工作原理可以分为三个步骤：渲染、对比和更新。
+首先，在渲染阶段，Vue会将组件的模板转化为虚拟DOM树。虚拟DOM树是由一系列的JavaScript对象组成，每个对象表示一个DOM节点，包含节点的标签名、属性、子节点等信息。
+然后，在对比阶段，当组件的数据发生变化时，Vue会重新渲染组件，并生成一个新的虚拟DOM树。然后，Vue会将新的虚拟DOM树和旧的虚拟DOM树进行对比，找出它们之间的差异。
+最后，在更新阶段，Vue会根据差异的类型，对真实DOM进行相应的更新操作。只有需要变化的部分才会被更新，这样可以减少不必要的DOM操作，提高页面的渲染效率。
+总的来说，虚拟DOM的工作原理就是通过比较差异，只更新需要变化的部分，从而减少了DOM操作的次数，提高了页面的性能。`,
+        vuedetailimg: vuexndom,
       },
       {
-        name: "组件化",
+        name: "生命周期钩子",
         description:
-          "Vue 的组件系统提供了一种抽象，让我们可以使小独和通可复用的组件构建大型应用。",
+          `Vue 实例在创建和运行过程中会经历一系列的阶段，每个阶段都有相应的钩子函数可以让我们在特定时刻执行自定义的逻辑。Vue 的生命周期大致可以分为以下几个阶段：
+1.Vue 生命周期概述
+创建阶段：在这个阶段，Vue 实例被初始化，包括数据观测、事件绑定等操作。
+挂载阶段：Vue 实例被挂载到 DOM 上，此时可以访问到 DOM 元素。
+更新阶段：当数据发生变化时，Vue 会重新渲染组件，触发更新阶段的钩子函数。
+销毁阶段：当组件被销毁时，会执行一些清理操作，如解绑事件、移除 DOM 元素等。
+2.主要的生命周期钩子函数
+主要的生命周期钩子函数
+beforeCreate
+created
+beforeMount
+mounted
+beforeUpdate
+updated
+beforeDestroy
+destroyed`,
+        vuedetailimg: vuesmzq,
+      },
+      {
+        name: "指令系统",
+        description:
+          `Vue 提供了丰富的指令系统，允许开发者直接操作 DOM。截止到Vue3.2，Vue一共有16个内置指令，包括 v-text、v-html、v-show、v-if、v-else、v-else-if、v-for、v-on、v-bind、v-model、v-slot、v-pre、v-cloak、v-once、v-memo、v-is，其中 v-memo是3.2新增的，v-is在3.1.0中废弃。`,
+        vuedetailimg: vuezhiling,
       },
     ],
   },
@@ -316,15 +388,18 @@ const labTheories: Record<string, LabTheory> = {
         name: "渲染引擎",
         description:
           "ECharts 使用 Canvas 或 SVG 作为渲染引擎，通过数据驱动方式进行图表绘制。",
+        vuedetailimg: echartsresult,
       },
       {
         name: "数据处理",
         description:
           "内部实现了高效的数据处理模块，支持大数据量的展示和实时更新。",
+        vuedetailimg: echartsresult,
       },
       {
         name: "布局算法",
         description: "采用智能的布局算法，确保图表元素的合理分布和展示。",
+        vuedetailimg: echartsresult,
       },
     ],
   },
@@ -335,16 +410,19 @@ const labTheories: Record<string, LabTheory> = {
         name: "事件循环机制",
         description:
           "JavaScript 使用事件循环来处理异步操作，包括任务和微任务队列的调度机制，确保代码的有序执行。",
+        vuedetailimg: vueall,
       },
       {
         name: "原型链继承",
         description:
           "通过原型链实现对象之间的继承关系，是 JavaScript 面向对象编程的核心机制。",
+        vuedetailimg: vueall,
       },
       {
         name: "闭包",
         description:
           "闭包允许函数访问并操作函数外部的变量，是实现数据私有和模块化的要机制。",
+        vuedetailimg: vueall,
       },
     ],
   },
@@ -355,15 +433,18 @@ const labTheories: Record<string, LabTheory> = {
         name: "数据模板语法",
         description:
           "使用特定的模板语法定义数据结构和生成规则，支持属性值自定义生成规则。",
+        vuedetailimg: vueall,
       },
       {
-        name: "请求拦截",
+        name: "请求���截",
         description:
           "通过重 XMLHttpRequest 和 Fetch API，实现对 Ajax 请求的拦截和模拟响应。",
+        vuedetailimg: vueall,
       },
       {
         name: "随机数据生成",
         description: "基于预定义的数据池和随机算法，生成符合规则的模拟数据。",
+        vuedetailimg: vueall,
       },
     ],
   },
@@ -374,16 +455,19 @@ const labTheories: Record<string, LabTheory> = {
         name: "请求处理",
         description:
           "基于 Promise 封装 XMLHttpRequest，提供统一的接口处理各种 HTTP 请求。",
+        vuedetailimg: vueall,
       },
       {
         name: "拦截器链",
         description:
           "通过请求和响应拦截器链，实现请求前的预处理和响应后的统一处理。",
+        vuedetailimg: vueall,
       },
       {
         name: "适配器模式",
         description:
           "使用适配器模式兼容不同环境（浏览器/Node.js），确保在不同平台上的一致性。",
+        vuedetailimg: vueall,
       },
     ],
   },
@@ -509,7 +593,7 @@ const labQuestions: Record<string, Question[]> = {
     {
       id: 2,
       title: "Vue组件中的 setup() 函数在什么时候执行？",
-      options: ["组��更新时", "组件创前", "组件销毁时", "组件挂载后"],
+      options: ["组更新时", "组件创前", "组件销毁时", "组件挂载后"],
       correctAnswer: 1,
     },
     {
@@ -527,7 +611,7 @@ const labQuestions: Record<string, Question[]> = {
     {
       id: 5,
       title: "在Vue 3中,如何获取模板引用？",
-      options: ["使用$refs", "使用ref()定义并在模板中使用ref属性", "使用querySelector", "使用getElementById"],
+      options: ["使用$refs", "使用ref()定义并在模板中用ref属性", "使用querySelector", "使用getElementById"],
       correctAnswer: 1,
     }
   ],
@@ -765,7 +849,7 @@ const executeJavaScript = (code: string) => {
   try {
     new Function(code)();
     console.log = originalLog;
-    return output || "代码执成功，但没有输出结果";
+    return output || "代码执成功，但没有输出结";
   } catch (error: any) {
     console.log = originalLog;
     return `执行错误: ${error.message}`;
@@ -816,7 +900,7 @@ const currentSection = ref("intro"); // 默认显示技术介绍部分
 
 const switchSection = (section: string) => {
   currentSection.value = section;
-  // 添加滚动回顶部的逻辑
+  // 添加动回顶部的逻辑
   const container = document.querySelector('.lab-container');
   if (container) {
     container.scrollTo({
@@ -856,7 +940,7 @@ const handlePrevSection = () => {
   if (currentIndex > 0) {
     currentSection.value = sectionOrder[currentIndex - 1];
   } else {
-    // 如果是第��个部分(intro)
+    // 如果是第一个部分(intro)
     const currentId = Number(route.params.id);
     if (currentId > 1) {
       // 如果不是第一个实验
@@ -1323,5 +1407,16 @@ const exportQuestions = () => {
 .intro-features-container li:hover {
   background: rgba(0, 234, 255, 0.1);
   transform: translateX(5px);
+}
+
+.vuedetailimg {
+  width: 500px;
+  height: auto;
+  margin: 18px auto;
+}
+
+.theory-section p {
+  white-space: pre-wrap; /* 保留换行符并允许自动换行 */
+  line-height: 1.6;
 }
 </style>
