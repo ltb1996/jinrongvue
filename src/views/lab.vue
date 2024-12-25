@@ -306,80 +306,30 @@ const labTheories: Record<string, LabTheory> = {
     principles: [
       {
         name: "响应式数据绑定",
-        description:
-          `Vue 2： 使用其自定义的Object.defineProperty对象以及对象属性的劫持+发布订阅模式来实现双向数据绑定。只要数据发生变化直接通知变化 并驱动视图更新。
-          Vue 2代码示例：
-          Object.defineProperty(obj, "name", { get:()=> {}, set:()=> {} })
-Vue 3：对底层进行了大量优化，包括使用了 ES6 的 Proxy 进行数据劫持，从而使得双向数据绑定更加高效。
-          Vue 3代码示例：
-          let p =new Proxy(obj,{get:(target,prop,p)=>{},set:(target, prop, vaule, p)=>{}})`,
-        vuedetailimg: vuesxbd1,
+        description: "Vue 2使用Object.defineProperty实现数据劫持，Vue 3使用Proxy实现数据劫持，提供更高效的双向数据绑定。",
+        vuedetailimg: vuesxbd1
       },
       {
         name: "组件化开发",
-        description:
-          `Vue.js 组件是一个可复用的代码模块，可以在 Vue.js 应用程序中使用。组件包括 HTML 模板、JavaScript 代码和 CSS 样式，并且可以包含其他组件。
-主要优势包括：
-模块化：Vue.js 组件使得应用程序变得更易于管理和维护，可以将应用程序分解为多个小模块，每个模块都有自己的功能和样式。
-可重用性：组件化开发使得开发人员可以编写可重用的代码片段，可以在不同的项目中使用，并且可以在同一应用程序中多次使用。
-维护性：组件化开发使得代码更加模块化，更易于维护和测试。
-性能：在 Vue.js 中使用组件可以提高应用程序的性能，因为它可以在需要时延迟加载组件。
-代码示例：
-          <template>
-            <div>
-              <h1>{{ title }}</h1>
-              <!-- 3.在template中以标记的语法使用子组件 -->
-              <TabMenu></TabMenu>
-              <Data></Data>
-            </div>
-          </template>
-          import TabMenu from '@/components/TabMenu.vue';  
-          import Data from '@/components/Data.vue';`,
-        vuedetailimg: vuezjhkf,
+        description: "Vue组件是可复用的代码模块，包含HTML模板、JavaScript代码和CSS样式，支持模块化开发和代码复用。",
+        vuedetailimg: vuezjhkf
       },
       {
         name: "虚拟 DOM",
-        description:
-          `什么是虚拟DOM？
-虚拟DOM（Virtual DOM）是Vue框架中的一个重要概念。它是一种用JavaScript对象来表示真实DOM结构的轻量级副本。当数据发生变化时，Vue会通过比较虚拟DOM和真实DOM的差异，然后只对差异部分进行更新，从而提高页面渲染的效率。
-为什么要使用虚拟DOM？
-使用虚拟DOM的主要目的是为了提高页面的性能和用户体验。传统的DOM操作是直接操作真实的DOM元素，当数据发生变化时，需要频繁地修改DOM，这样会导致页面的重绘和回流，从而降低了页面的渲染效率。而使用虚拟DOM可以将频繁的DOM操作转化为对虚拟DOM的操作，只有在必要的时候才会更新真实DOM，从而减少了不必要的性能损耗。
-虚拟DOM的工作原理是什么？
-虚拟DOM的工作原理可以分为三个步骤：渲染、对比和更新。
-首先，在渲染阶段，Vue会将组件的模板转化为虚拟DOM树。虚拟DOM树是由一系列的JavaScript对象组成，每个对象表示一个DOM节点，包含节点的标签名、属性、子节点等信息。
-然后，在对比阶段，当组件的数据发生变化时，Vue会重新渲染组件，并生成一个新的虚拟DOM树。然后，Vue会将新的虚拟DOM树和旧的虚拟DOM树进行对比，找出它们之间的差异。
-最后，在更新阶段，Vue会根据差异的类型，对真实DOM进行相应的更新操作。只有需要变化的部分才会被更新，这样可以减少不必要的DOM操作，提高页面的渲染效率。
-总的来说，虚拟DOM的工作原理就是通过比较差异，只更新需要变化的部分，从而减少了DOM操作的次数，提高了页面的性能。`,
-        vuedetailimg: vuexndom,
+        description: "Vue使用虚拟DOM优化性能，通过对比新旧虚拟DOM树的差异，最小化实际DOM操作，提高渲染效率。",
+        vuedetailimg: vuexndom
       },
       {
         name: "生命周期钩子",
-        description:
-          `Vue 实例在创建和运行过程中会经历一系列的阶段，每个阶段都有相应的钩子函数可以让我们在特定时刻执行自定义的逻辑。Vue 的生命周期大致可以分为以下几个阶段：
-1.Vue 生命周期概述
-创建阶段：在这个阶段，Vue 实例被初始化，包括数据观测、事件绑定等操作。
-挂载阶段：Vue 实例被挂载到 DOM 上，此时可以访问到 DOM 元素。
-更新阶段：当数据发生变化时，Vue 会重新渲染组件，触发更新阶段的钩子函数。
-销毁阶段：当组件被销毁时，会执行一些清理操作，如解绑事件、移除 DOM 元素等。
-2.主要的生命周期钩子函数
-主要的生命周期钩子函数
-beforeCreate
-created
-beforeMount
-mounted
-beforeUpdate
-updated
-beforeDestroy
-destroyed`,
-        vuedetailimg: vuesmzq,
+        description: "Vue提供了完整的生命周期钩子函数，包括创建、挂载、更新和销毁阶段，方便开发者在不同阶段执行代码。",
+        vuedetailimg: vuesmzq
       },
       {
         name: "指令系统",
-        description:
-          `Vue 提供了丰富的指令系统，允许开发者直接操作 DOM。截止到Vue3.2，Vue一共有16个内置指令，包括 v-text、v-html、v-show、v-if、v-else、v-else-if、v-for、v-on、v-bind、v-model、v-slot、v-pre、v-cloak、v-once、v-memo、v-is，其中 v-memo是3.2新增的，v-is在3.1.0中废弃。`,
-        vuedetailimg: vuezhiling,
-      },
-    ],
+        description: "Vue提供了16个内置指令，包括v-text、v-html、v-show、v-if等，方便开发者直接操作DOM和处理数据。",
+        vuedetailimg: vuezhiling
+      }
+    ]
   },
   ECharts实验: {
     title: "ECharts 的技术原理",
@@ -409,7 +359,7 @@ destroyed`,
       {
         name: "事件循环机制",
         description:
-          "JavaScript 使用事件循环来处理异步操作，包括任务和微任务队列的调度机制，确保代码的有序执行。",
+          "JavaScript 使用事件循环来处理异步操作，包任务和微任务队列的调度机制，确保代码的有序执行。",
         vuedetailimg: vueall,
       },
       {
@@ -436,7 +386,7 @@ destroyed`,
         vuedetailimg: vueall,
       },
       {
-        name: "请求���截",
+        name: "请求拦截",
         description:
           "通过重 XMLHttpRequest 和 Fetch API，实现对 Ajax 请求的拦截和模拟响应。",
         vuedetailimg: vueall,
@@ -481,19 +431,49 @@ const labContent: Lab[] = [
       {
         title: "组件创建",
         description: "让我们来创建一个简单的Vue组件",
-        code: `<template>
-  <div class="hello">
-    <h1>{{ message }}</h1>
-    <button @click="changeMessage">改变消息</button>
-  </div>
-</template>
+        code: `<template>  
+  <div class="hello">  
+    <h1>{{ message }}</h1>  
+    <button @click="changeMessage">改变消息</button>  
+    <input type="text" v-model="userInput" placeholder="输入你的消息" />  
+    <button @click="updateMessage">更新消息</button>  
+    <div v-if="isMessageUpdated">  
+      <p>最新消息: {{ updatedMessage }}</p>  
+    </div>  
+    <div>  
+      <h2>消息历史:</h2>  
+      <ul>  
+        <li v-for="(msg, index) in messageHistory" :key="index">{{ msg }}</li>  
+      </ul>  
+    </div>  
+  </div>  
+</template>  
 
-<script setup>
-import { ref } from 'vue'
-const message = ref('Hello Vue!')
-const changeMessage = () => {
-  message.value = 'Message Changed!'
-}
+< setup>  
+import { ref, computed } from 'vue'  
+const message = ref('Hello Vue!')  
+const userInput = ref('')  
+const messageHistory = ref([])  
+const changeMessage = () => {  
+  message.value = 'Message Changed!'  
+  recordMessage(message.value)  
+}  
+const updateMessage = () => {  
+  if (userInput.value.trim()) {  
+    message.value = userInput.value  
+    recordMessage(message.value)  
+    userInput.value = '' // Clear input after update  
+  }  
+}  
+const recordMessage = (msg) => {  
+  messageHistory.value.push(msg)  
+}  
+const isMessageUpdated = computed(() => {  
+  return message.value !== 'Hello Vue!'  
+})  
+const updatedMessage = computed(() => {  
+  return message.value  
+})  
 <\/script>`,
       },
     ],
@@ -505,7 +485,7 @@ const changeMessage = () => {
       {
         title: "数组操作",
         description: "习JavaScript数组的基本操作方法",
-        code: `const fruits = ['苹果', '香蕉', '橙子'];
+        code: `const fruits = ['���果', '香蕉', '橙子'];
 
 fruits.push('葡萄', '梨');
 console.log(fruits);
@@ -677,7 +657,7 @@ const labQuestions: Record<string, Question[]> = {
     },
     {
       id: 3,
-      title: "ECharts中如何实现图表的自适应调整大小？",
+      title: "ECharts中如何实现表的自适应调整大小？",
       options: [
         "自动调整",
         "使用resize()方法",
@@ -923,7 +903,7 @@ const handleNextSection = () => {
     const currentId = Number(route.params.id);
     if (currentId < 5) {
       // 如果是最一个实验
-      // 跳转到下一个实验的第一个部分(intro)
+      // 跳转到下一实验的第一个部分(intro)
       router.push(`/lab/${currentId + 1}`);
       currentSection.value = "intro";
     } else {
@@ -1011,7 +991,7 @@ const exportQuestions = () => {
     };
   });
 
-  // 转换为JSON字符串
+  // 换为JSON字符串
   const jsonString = JSON.stringify(formattedData, null, 2);
   
   // 创建Blob对象
@@ -1069,17 +1049,19 @@ const exportQuestions = () => {
   padding: 20px;
   margin-bottom: 20px;
   height: auto;
+  min-height: 0;
 }
 
 .code-block {
   background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 4px;
+  height: auto;
 }
 
 .code-textarea {
   width: 100%;
-  min-height: 300px;
+  min-height: 420px;
   background: transparent;
   border: none;
   color: #00eaff;
@@ -1092,8 +1074,8 @@ const exportQuestions = () => {
   outline: none;
   white-space: pre;
   overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .code-textarea::-webkit-scrollbar {
