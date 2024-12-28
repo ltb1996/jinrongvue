@@ -22,7 +22,7 @@
             v-if="typeof currentDescription === 'object' && currentDescription.showImage"
             class="architecture-image"
           >
-            <img :src="jiagou" alt="项目架构图" />
+          <img :src="currentDescription.image" alt="项目相关图片" />
           </div>
           <p class="text-content">
             {{
@@ -49,12 +49,16 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import jiagou from "../assets/img/jiagou.png";
+import vuenvvm from "../assets/img/vuenvvm.jpg";
+import vueshujvbeijing from "../assets/img/vueshujvbeijing.webp";
+import vuexiangmujianjie from "../assets/img/vuexiangmujianjie.webp"
 
 const router = useRouter();
 const activeIndex = ref("1");
 interface Description {
   text: string;
   showImage?: boolean;
+  image?: string;
 }
 
 const currentDescription = ref<string | Description>("");
@@ -71,6 +75,7 @@ const getDescription = (index: string) => {
         (5) 项目支持 Excel 数据导入功能，实现了数据的动态更新和实时展示。
         (6) 通过响应式设计确保了在不同设备上的良好显示效果。整体架构清晰，代码组织规范，具有良好的可维护性和扩展性。`,
         showImage: true,
+        image: vuexiangmujianjie
       };
     case "2":
       return {
@@ -78,6 +83,7 @@ const getDescription = (index: string) => {
       (2) 主要目标包括：1. 数据可视化：通过多样化的图表形式，将复杂的金融数据转化为直观的可视化展示，帮助用户快速理解和分析数据趋势；2. 技术教学：通过实验模块，帮助开发者深入理解 Vue 3、ECharts、Mock.js 等现代前端技术的应用；3. 实时监控：支持数据的实时更新和动态展示，满足金融数据实时监控的需求；4. 交互体验：提供良好的用户交互体验，包括数据筛选、图表联动、数据导入等功能；5. 技术创新：展示现代前端技术在金融领域的创新应用，为类似项目提供参考实现。
       (3) 通过这些目标的实现，本项目致力于提升金融数据分析的效率和准确性。`,
         showImage: true,
+        image: vuenvvm
       };
     case "3":
       return {
@@ -87,6 +93,7 @@ const getDescription = (index: string) => {
       (4) 本项目正是在这样的背景下，结合金融领域的实际需求和现代前端技术的优势，打造了一个功能完善、性能优异的数据可视化平台。
       (5) 项目仅关注实际应用，还注重技术的教学价值，通过实验模块帮助开发者掌握相关技术，体现了技术创新和知识传播的双重价值。`,
         showImage: true,
+        image: vueshujvbeijing
       };
     case "4":
       return {
@@ -101,6 +108,7 @@ const getDescription = (index: string) => {
       8. 类型系统：通过 TypeScript 提供完整的类型支持，提高代码的可维护性和可靠性。
       这些技术原理的综合运用，确保了项目的高性能和良好的用户体验。`,
         showImage: true,
+        image: jiagou
       };
     default:
       return "";
@@ -220,13 +228,13 @@ onMounted(() => {
 
 .architecture-image {
   flex-shrink: 0;
-  width: 400px;
+  width: 480px;
   
   img {
     width: 100%;
-    height: auto;
+    height: 500px;
     border-radius: 8px;
-    border: 1px solid rgba(0, 234, 255, 0.3);
+    /* border: 1px solid rgba(0, 234, 255, 0.3); */
     box-shadow: 0 0 20px rgba(0, 234, 255, 0.2);
     transition: transform 0.3s ease;
     background-color: white;

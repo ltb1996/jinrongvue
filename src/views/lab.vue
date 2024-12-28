@@ -182,6 +182,22 @@ import vuezjhkf from "../assets/img/vuezjhkf.jpeg";
 import vuexndom from "../assets/img/vuexndom.png";
 import vuesmzq from "../assets/img/vuesmzq.png";
 import vuezhiling from "../assets/img/vuezhiling.png";
+import javascriptjiagou from "../assets/img/javascriptjiagou.webp";
+import jsshijianxunhuan from "../assets/img/jsshijianxunhuan.webp";
+import jsyuanxinglian from "../assets/img/jsyuanxinglian.png";
+import jsbibao from "../assets/img/jsbibao.webp";
+import echartsjiagou from "../assets/img/echartsjiagou.png";
+import echartsxuanranyinqing from "../assets/img/echartsxuanranyinqing.webp";
+import echartsshujvchuli from "../assets/img/echartsshujvchuli.png";
+import echartsbujvsuanfa from "../assets/img/echartsbujvsuanfa.png";
+import mockjsjiagou from "../assets/img/mockjsjiagou.webp";
+import mockmobanyufa from "../assets/img/mockmobanyufa.png";
+import mockqingqiulanjie from "../assets/img/mockqingqiulanjie.png";
+import mocksuijishujv from "../assets/img/mocksuijishujv.png";
+import axiosjiagou from "../assets/img/axiosjiagou.jpg";
+import axiosqingqiuchuli from "../assets/img/axiosqingqiuchuli.png";
+import axioslanjieqilian from "../assets/img/axioslanjieqilian.png";
+import axiosshipeiqi from "../assets/img/axiosshipeiqi.webp"
 
 const route = useRoute();
 const router = useRouter();
@@ -236,7 +252,7 @@ const labIntros: Record<string, LabIntro> = {
       "Vue.js 是一个用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。",
     features: [
       "响应式数据绑定：Vue 通过数据绑定机制，自动将数据的变化反映到视图上。",
-      "组件化开发：Vue 的组件系统允许开发者将 UI 分解为独立、可复用的组件。",
+      "组件化开发：Vue 的组件系统允许开发者将 UI 分解为独立��可复用的组件。",
       "虚拟 DOM：Vue 使用虚拟 DOM 来优化实际 DOM 操作，通过 diff 算法计算出最小的更新范围，从而提高性能。",
       "生命周期钩子：Vue 提供了生命周期钩子，允许开发者在特定阶段执行自定义逻辑。",
       "指令系统：Vue 提供了丰富的指令系统，允许开发者直接操作 DOM。",
@@ -247,56 +263,57 @@ const labIntros: Record<string, LabIntro> = {
     title: "ECharts 简介",
     biaoti: "ECharts",
     description:
-      "ECharts 是一个使用 JavaScript 实现的开源可视化库，提供直观，交互丰富，可高度个性化定制的数据可视化图表。",
+      "ECharts 是一个使用 JavaScript 实现的开源可视化库，提供直观，可高度个性化定制的数据可视化图表,支持折线图、柱状图、饼图、散点图、雷达图等多种图表类型。",
     features: [
-      "丰富的可视化类型",
-      "响应式图表设计",
-      "强大的交互能力",
-      "多种数据格式支持",
+      "丰富的可视化类型: 支持折线图、柱状图、饼图、散点图、雷达图等多种图表类型。",
+      "响应式图表设计: 支持根据不同屏幕尺寸自动调整图表大小，适应不同设备。",
+      "强大的交互能力: 提供丰富的交互功能，如缩放、平移、高亮等，增强用户体验。",
+      "多种数据格式支持: 支持多种数据格式，如JSON、CSV等，方便数据导入和处理。",
+      "高度可定制: 提供丰富的配置选项，允许开发者根据需求自定义图表样式和功能。",
     ],
-    image: echartsresult,
+    image: echartsjiagou,
   },
   JavaScript实验: {
     title: "JavaScript 简介",
     biaoti: "JavaScript",
     description:
-      "JavaScript 是一种具有函数优先特性的轻量级、解释型或即时编译型的编程语言。它是最流行的 Web 脚本语言，被广泛应用于客户端和服务器端开发。",
+      "JavaScript 是一种具有函数优先特性的轻量级、解释型或即时编译型的编程语言。它是最流行的 Web 脚本语言，被广泛应用于客户端和服务器端开发，被广泛应用于客户端和服务器端开发。",
     features: [
-      "动态类",
-      "函数式编程",
-      "面向对象编程",
-      "事件驱动",
-      "跨平台支持",
+      "动态类：JavaScript 是动态类型语言，变量类型在运行时确定。变量类型在运行时确定变量类型在运行时。",
+      "函数式编程：JavaScript 支持函数作为一等公民，可以作为参数传递和返回值。",
+      "面向对象编程：JavaScript 支持面向对象编程，通过原型链实现继承。通过原型链实现继承。通过原型链实现继承。",
+      "事件驱动：JavaScript 通过事件驱动模型处理用户交互。通过事件驱动模型处理用户交互。通过事件驱动模型处理用户交互。",
+      "跨平台支持：JavaScript 可以在任何支持 JavaScript 的平台上运行。",
     ],
-    image: vueall,
+    image: javascriptjiagou,
   },
   "Mock.js实验": {
     title: "Mock.js 简介",
     biaoti: "Mock.js",
     description:
-      "Mock.js 是一个模拟数据生成器，可以帮助前端开发者独立于后端进行开发。它可以拦截 Ajax 请求，返回模拟响应数据。",
+      "Mock.js 是一个模拟数据生成器，可以帮助前端开发者独立于后端进行开发。它可以拦截 Ajax 请求，返回模拟响应数据,支持随机数据生成、Ajax 请求拦截、自定义数据规则、完善的中文数据支持。",
     features: [
-      "数据模板定义",
-      "随机数据生成",
-      "Ajax 请求拦截",
-      "支持自定义数据规则",
-      "完善的中文数据支持",
+      "数据模板定义: 使用特定的模板语法定义数据结构和生成规则，支持属性值自定义生成规则。",
+      "随机数据生成: 基于预定义的数据池和随机算法，生成符合规则的数据。",
+      "Ajax 请求拦截: 通过重 XMLHttpRequest 和 Fetch API，实现对 Ajax 请求的拦截和模拟响应。",
+      "支持自定义数据规则: 提供丰富的配置选项，允许开发者根据需求自定义数据生成规则。",
+      "完善的中文数据支持: 提供丰富的中文数据模板，方便开发者生成符合中文习惯的模拟数据。",
     ],
-    image: vueall,
+    image: mockjsjiagou,
   },
   Axios实验: {
     title: "Axios 简介",
     biaoti: "Axios",
     description:
-      "Axios 是一个基于 Promise 的 HTTP 客户端，可以用于浏览器和 Node.js。它提供一个简单而强大的方式来发送 HTTP 请求。",
+      "Axios 是一个基于 Promise 的 HTTP 客户端，可以用于浏览器和 Node.js。它提供一个简单而强大的方式来发送 HTTP 请求，支持拦截请求和响应、转换请求和响应数据、自动转换 JSON 数据、客户端支持防御 XSRF 等特性。",
     features: [
-      "支持 Promise API",
-      "拦截请求和响应",
-      "转换请求和响应数据",
-      "动转换 JSON 数据",
-      "客户端支持防御 XSRF",
+      "支持 Promise API：支持Promise API，可以方便地处理异步请求。",
+      "拦截请求和响应：支持拦截请求和响应，可以在请求发送前和响应返回后进行处理。",
+      "转换请求和响应数据：支持转换请求和响应数据，可以在发送请求前和接收响应后进行处理。",
+      "自动转换 JSON 数据：支持自动转换 JSON 数据，可以方便地将 JSON 数据转换为 JavaScript 对象。",
+      "客户端支持防御 XSRF：支持客户端支持防御 XSRF，可以防止跨站请求伪造攻击。",
     ],
-    image: vueall,
+    image: axiosjiagou,
   },
 };
 
@@ -338,18 +355,18 @@ const labTheories: Record<string, LabTheory> = {
         name: "渲染引擎",
         description:
           "ECharts 使用 Canvas 或 SVG 作为渲染引擎，通过数据驱动方式进行图表绘制。",
-        vuedetailimg: echartsresult,
+        vuedetailimg: echartsxuanranyinqing,
       },
       {
         name: "数据处理",
         description:
           "内部实现了高效的数据处理模块，支持大数据量的展示和实时更新。",
-        vuedetailimg: echartsresult,
+        vuedetailimg: echartsshujvchuli,
       },
       {
         name: "布局算法",
         description: "采用智能的布局算法，确保图表元素的合理分布和展示。",
-        vuedetailimg: echartsresult,
+        vuedetailimg: echartsbujvsuanfa,
       },
     ],
   },
@@ -360,19 +377,19 @@ const labTheories: Record<string, LabTheory> = {
         name: "事件循环机制",
         description:
           "JavaScript 使用事件循环来处理异步操作，包任务和微任务队列的调度机制，确保代码的有序执行。",
-        vuedetailimg: vueall,
+        vuedetailimg: jsshijianxunhuan,
       },
       {
-        name: "原型链继承",
+        name: "原型链",
         description:
           "通过原型链实现对象之间的继承关系，是 JavaScript 面向对象编程的核心机制。",
-        vuedetailimg: vueall,
+        vuedetailimg: jsyuanxinglian,
       },
       {
         name: "闭包",
         description:
           "闭包允许函数访问并操作函数外部的变量，是实现数据私有和模块化的要机制。",
-        vuedetailimg: vueall,
+        vuedetailimg: jsbibao,
       },
     ],
   },
@@ -383,18 +400,18 @@ const labTheories: Record<string, LabTheory> = {
         name: "数据模板语法",
         description:
           "使用特定的模板语法定义数据结构和生成规则，支持属性值自定义生成规则。",
-        vuedetailimg: vueall,
+        vuedetailimg: mockmobanyufa,
       },
       {
         name: "请求拦截",
         description:
           "通过重 XMLHttpRequest 和 Fetch API，实现对 Ajax 请求的拦截和模拟响应。",
-        vuedetailimg: vueall,
+        vuedetailimg: mockqingqiulanjie,
       },
       {
         name: "随机数据生成",
         description: "基于预定义的数据池和随机算法，生成符合规则的模拟数据。",
-        vuedetailimg: vueall,
+        vuedetailimg: mocksuijishujv,
       },
     ],
   },
@@ -405,19 +422,19 @@ const labTheories: Record<string, LabTheory> = {
         name: "请求处理",
         description:
           "基于 Promise 封装 XMLHttpRequest，提供统一的接口处理各种 HTTP 请求。",
-        vuedetailimg: vueall,
+        vuedetailimg: axiosqingqiuchuli,
       },
       {
         name: "拦截器链",
         description:
           "通过请求和响应拦截器链，实现请求前的预处理和响应后的统一处理。",
-        vuedetailimg: vueall,
+        vuedetailimg: axioslanjieqilian,
       },
       {
         name: "适配器模式",
         description:
           "使用适配器模式兼容不同环境（浏览器/Node.js），确保在不同平台上的一致性。",
-        vuedetailimg: vueall,
+        vuedetailimg: axiosshipeiqi,
       },
     ],
   },
@@ -484,15 +501,44 @@ const updatedMessage = computed(() => {
     sections: [
       {
         title: "数组操作",
-        description: "习JavaScript数组的基本操作方法",
-        code: `const fruits = ['���果', '香蕉', '橙子'];
+        description: "学习JavaScript数组的常用操作方法",
+        code: `// 创建并初始化数组
+const fruits = ['苹果', '香蕉', '橙子'];
+console.log('初始数组:', fruits);
 
+// 使用push添加元素到末尾
 fruits.push('葡萄', '梨');
-console.log(fruits);
+console.log('push后:', fruits);
 
-fruits.pop();
-console.log(fruits);
-`,
+// 使用pop删除最后一个元素
+const removed = fruits.pop();
+console.log('pop后:', fruits);
+console.log('被删除的元素:', removed);
+
+// 使用unshift添加元素到开头
+fruits.unshift('草莓', '樱桃');
+console.log('unshift后:', fruits);
+
+// 使用shift删除第一个元素
+const firstRemoved = fruits.shift();
+console.log('shift后:', fruits);
+console.log('被删除的第一个元素:', firstRemoved);
+
+// 使用splice添加和删除元素
+fruits.splice(2, 1, '猕猴桃', '火龙果');
+console.log('splice后:', fruits);
+
+// 使用slice创建数组切片
+const slicedFruits = fruits.slice(1, 4);
+console.log('slice切片结果:', slicedFruits);
+
+// 使用map转换数组元素
+const upperFruits = fruits.map(fruit => fruit.toUpperCase());
+console.log('map转换后:', upperFruits);
+
+// 使用filter筛选数组元素
+const filteredFruits = fruits.filter(fruit => fruit.length > 2);
+console.log('filter筛选后:', filteredFruits);`,
       },
     ],
   },
@@ -531,11 +577,26 @@ myChart.setOption(option);`,
         code: `// 使用 Mock.js 生成模拟数据
 const data = Mock.mock({
   'list': [{
-    'id|+1': 1,
-    'name': '@cname',
-    'age|18-60': 1,
-    'city': '@city',
-    'email': '@email'
+    // 自增ID
+   'id|+1': 1,
+   // 随机中文姓名
+   'name': '@cname',
+   // 随机年龄
+   'age|18-60': 1,
+   // 随机城市
+   'city': '@city',
+   // 随机邮箱
+   'email': '@email',
+   // 随机日期
+   'registerDate': '@date("yyyy-MM-dd")',
+   // 随机状态
+   'status|1': ['活跃', '离线', '忙碌'],
+   // 随机积分
+   'points|0-1000': 0,
+   // 随机标签数组
+   'tags|1-3': ['@cword(2,4)'],
+   // 随机详细地址
+   'address': '@province @city @county'
   }]
 });
 console.log(data.list);`,
@@ -550,13 +611,46 @@ console.log(data.list);`,
         title: "发送GET请求",
         description: "使用Axios发送GET请求获取数据",
         code: `// 发送GET请求
-axios.get('https://api.example.com/data')
-  .then(response => {
-    console.log(response.data);
+const axios = require('axios');
+// 向给定ID的用户发起请求
+axios.get('/user?ID=12345')
+  .then(function (response) {
+    // 处理成功情况
+    console.log(response);
   })
-  .catch(error => {
-    console.error('Error:', error);
-  });`,
+  .catch(function (error) {
+    // 处理错误情况
+    console.log(error);
+  })
+  .finally(function () {
+    // 总是会执行
+  });
+
+// 上述请求也可以按以下方式完成（可选）
+axios.get('/user', {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {
+    // 总是会执行
+  });  
+
+// 支持async/await用法
+async function getUser() {
+  try {
+    const response = await axios.get('/user?ID=12345');
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}`,
       },
     ],
   },
@@ -814,7 +908,7 @@ const executeJavaScript = (code: string) => {
       args
         .map((arg) => {
           if (Array.isArray(arg)) {
-            // 数组使用一行显示
+            // 数组使���一行显示
             return `[${arg.join(", ")}]`;
           } else if (typeof arg === "object" && arg !== null) {
             // 对象仍然保持格式化显示
@@ -855,13 +949,18 @@ const toggleResult = (section: Section) => {
           break;
         case "Mock.js实验":
           section.result = `[  
-  {  
-    "id": 1,  
-    "name": "王芳",  
-    "age": 45,  
-    "city": "广州",  
-    "email": "wangfang@example.com"  
-  }  
+  {
+     "id": 1,
+     "name": "张雪梅",
+     "age": 28,
+     "city": "广州市",
+     "email": "zhang_xm@example.com",
+     "registerDate": "2023-12-15",
+     "status": "活跃",
+     "points": 856,
+     "tags": ["技术", "设计"],
+     "address": "浙江省 杭州市 西湖区"
+   }  
 ]`;
           break;
         case "Axios实验":
@@ -1212,10 +1311,6 @@ const exportQuestions = () => {
 .theory-content li {
   margin: 8px 0;
 }
-.intro-image {
-  width: 700px;
-  height: 600px;
-}
 
 .theory-section {
   padding: 15px;
@@ -1368,7 +1463,7 @@ const exportQuestions = () => {
 
 .intro-image {
   width: 100%;
-  height: auto;
+  height: 430px;
   max-width: 600px;
   border-radius: 8px;
   border: 1px solid rgba(0, 234, 255, 0.3);
