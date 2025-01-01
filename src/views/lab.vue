@@ -4,7 +4,9 @@
     <div class="lab-container">
       <div class="breadcrumb-container">
         <el-breadcrumb separator="/">
-          <el-breadcrumb-item>首页</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/projectindex' }"
+            >首页</el-breadcrumb-item
+          >
           <el-breadcrumb-item :to="{ path: '/basicoperate/shoppage' }"
             >技术实操</el-breadcrumb-item
           >
@@ -48,12 +50,20 @@
             <div class="intro-flex-container">
               <div class="intro-image-container">
                 <h2>{{ labIntros[currentLab.title].biaoti }}架构图</h2>
-                <img :src="labIntros[currentLab.title].image" alt="技术介绍图片" class="intro-image">
+                <img
+                  :src="labIntros[currentLab.title].image"
+                  alt="技术介绍图片"
+                  class="intro-image"
+                />
               </div>
               <div class="intro-features-container">
                 <h2>主要特性</h2>
                 <ul>
-                  <li v-for="(feature, index) in labIntros[currentLab.title].features" :key="index">
+                  <li
+                    v-for="(feature, index) in labIntros[currentLab.title]
+                      .features"
+                    :key="index"
+                  >
                     {{ feature }}
                   </li>
                 </ul>
@@ -75,13 +85,20 @@
               >
                 <h3>{{ index + 1 }}. {{ principle.name }}</h3>
                 <p>{{ principle.description }}</p>
-                <img :src="principle.vuedetailimg" alt="技术介绍图片" class="vuedetailimg">
+                <img
+                  :src="principle.vuedetailimg"
+                  alt="技术介绍图片"
+                  class="vuedetailimg"
+                />
               </template>
             </div>
           </template>
         </div>
       </div>
-      <div v-if="currentSection === 'implementation' && currentLab" class="lab-content">
+      <div
+        v-if="currentSection === 'implementation' && currentLab"
+        class="lab-content"
+      >
         <h1>{{ currentLab.title }}</h1>
         <div
           class="lab-section"
@@ -157,16 +174,34 @@
             </div>
           </template>
           <div class="quiz-actions">
-            <el-button type="primary" @click="checkAnswers" v-if="!showResults">提交答案</el-button>
-            <el-button type="primary" @click="resetQuiz" v-else>重新作答</el-button>
+            <el-button 
+              type="primary" 
+              @click="checkAnswers" 
+              v-if="!showResults && currentLab?.title === 'Axios实验' && currentSection === 'example'"
+            >提交答案</el-button>
+            <el-button 
+              type="primary" 
+              @click="resetQuiz" 
+              v-if="showResults && currentLab?.title === 'Axios实验' && currentSection === 'example'"
+            >重新作答</el-button>
+            
             <el-button type="success" @click="exportQuestions">导出习题</el-button>
-          </div>  
+            <el-button 
+              type="danger" 
+              v-if="currentLab?.title === 'Axios实验' && currentSection === 'example'"
+              @click="showScoreDialog = true"
+            >查看得分</el-button>
+          </div>
         </div>
       </div>
       <div class="section-navigation">
         <el-button type="primary" @click="handlePrevSection">上一步</el-button>
         <el-button type="primary" @click="handleNextSection">下一步</el-button>
       </div>
+      <Score
+        v-model:dialogVisible="showScoreDialog"
+        :correctAnswers="totalCorrectAnswers"
+      />
     </div>
   </div>
 </template>
@@ -198,6 +233,7 @@ import axiosjiagou from "../assets/img/axiosjiagou.jpg";
 import axiosqingqiuchuli from "../assets/img/axiosqingqiuchuli.png";
 import axioslanjieqilian from "../assets/img/axioslanjieqilian.png";
 import axiosshipeiqi from "../assets/img/axiosshipeiqi.webp"
+import Score from './basicoperate/score.vue'
 
 const route = useRoute();
 const router = useRouter();
@@ -252,7 +288,7 @@ const labIntros: Record<string, LabIntro> = {
       "Vue.js 是一个用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。",
     features: [
       "响应式数据绑定：Vue 通过数据绑定机制，自动将数据的变化反映到视图上。",
-      "组件化开发：Vue 的组件系统允许开发者将 UI 分解为独立��可复用的组件。",
+      "组件化开发：Vue 的组件系统允许开发者将 UI 分解为独立可复用的组件。",
       "虚拟 DOM：Vue 使用虚拟 DOM 来优化实际 DOM 操作，通过 diff 算法计算出最小的更新范围，从而提高性能。",
       "生命周期钩子：Vue 提供了生命周期钩子，允许开发者在特定阶段执行自定义逻辑。",
       "指令系统：Vue 提供了丰富的指令系统，允许开发者直接操作 DOM。",
@@ -448,49 +484,49 @@ const labContent: Lab[] = [
       {
         title: "组件创建",
         description: "让我们来创建一个简单的Vue组件",
-        code: `<template>  
-  <div class="hello">  
-    <h1>{{ message }}</h1>  
-    <button @click="changeMessage">改变消息</button>  
-    <input type="text" v-model="userInput" placeholder="输入你的消息" />  
-    <button @click="updateMessage">更新消息</button>  
-    <div v-if="isMessageUpdated">  
-      <p>最新消息: {{ updatedMessage }}</p>  
-    </div>  
-    <div>  
-      <h2>消息历史:</h2>  
-      <ul>  
-        <li v-for="(msg, index) in messageHistory" :key="index">{{ msg }}</li>  
-      </ul>  
-    </div>  
-  </div>  
-</template>  
+        code: `<template>
+  <div class="hello">
+    <h1>{{ message }}</h1>
+    <button @click="changeMessage">改变消息</button>
+    <input type="text" v-model="userInput" placeholder="输入你的消息" />
+    <button @click="updateMessage">更新消息</button>
+    <div v-if="isMessageUpdated">
+      <p>最新消息: {{ updatedMessage }}</p>
+    </div>
+    <div>
+      <h2>消息历史:</h2>
+      <ul>
+        <li v-for="(msg, index) in messageHistory" :key="index">{{ msg }}</li>
+      </ul>
+    </div>
+  </div>
+</template>
 
-< setup>  
-import { ref, computed } from 'vue'  
-const message = ref('Hello Vue!')  
-const userInput = ref('')  
-const messageHistory = ref([])  
-const changeMessage = () => {  
-  message.value = 'Message Changed!'  
-  recordMessage(message.value)  
-}  
-const updateMessage = () => {  
-  if (userInput.value.trim()) {  
-    message.value = userInput.value  
-    recordMessage(message.value)  
-    userInput.value = '' // Clear input after update  
-  }  
-}  
-const recordMessage = (msg) => {  
-  messageHistory.value.push(msg)  
-}  
-const isMessageUpdated = computed(() => {  
-  return message.value !== 'Hello Vue!'  
-})  
-const updatedMessage = computed(() => {  
-  return message.value  
-})  
+< setup>
+import { ref, computed } from 'vue'
+const message = ref('Hello Vue!')
+const userInput = ref('')
+const messageHistory = ref([])
+const changeMessage = () => {
+  message.value = 'Message Changed!'
+  recordMessage(message.value)
+}
+const updateMessage = () => {
+  if (userInput.value.trim()) {
+    message.value = userInput.value
+    recordMessage(message.value)
+    userInput.value = '' // Clear input after update
+  }
+}
+const recordMessage = (msg) => {
+  messageHistory.value.push(msg)
+}
+const isMessageUpdated = computed(() => {
+  return message.value !== 'Hello Vue!'
+})
+const updatedMessage = computed(() => {
+  return message.value
+})
 <\/script>`,
       },
     ],
@@ -640,7 +676,7 @@ axios.get('/user', {
   })
   .finally(function () {
     // 总是会执行
-  });  
+  });
 
 // 支持async/await用法
 async function getUser() {
@@ -908,7 +944,7 @@ const executeJavaScript = (code: string) => {
       args
         .map((arg) => {
           if (Array.isArray(arg)) {
-            // 数组使���一行显示
+            // 数组使用一行显示
             return `[${arg.join(", ")}]`;
           } else if (typeof arg === "object" && arg !== null) {
             // 对象仍然保持格式化显示
@@ -923,7 +959,7 @@ const executeJavaScript = (code: string) => {
   try {
     new Function(code)();
     console.log = originalLog;
-    return output || "代码执成功，但没有输出结";
+    return output || "代码执行成功，但没有输出结果";
   } catch (error: any) {
     console.log = originalLog;
     return `执行错误: ${error.message}`;
@@ -948,7 +984,7 @@ const toggleResult = (section: Section) => {
           section.result = "图表创建成功！";
           break;
         case "Mock.js实验":
-          section.result = `[  
+          section.result = `[
   {
      "id": 1,
      "name": "张雪梅",
@@ -960,7 +996,7 @@ const toggleResult = (section: Section) => {
      "points": 856,
      "tags": ["技术", "设计"],
      "address": "浙江省 杭州市 西湖区"
-   }  
+   }
 ]`;
           break;
         case "Axios实验":
@@ -1062,54 +1098,114 @@ const resetQuiz = () => {
   showResults.value = false;
 };
 
-const exportQuestions = () => {
-  // 收集所有实验的题目
-  const allQuestions = {
-    'Vue基础实验': labQuestions['Vue基础实验'],
-    'JavaScript实验': labQuestions['JavaScript实验'],
-    'ECharts实验': labQuestions['ECharts实验'],
-    'Mock.js实验': labQuestions['Mock.js实验'],
-    'Axios实验': labQuestions['Axios实验']
-  };
+// const exportQuestions = () => {
+//   // 收集所有实验的题目
+//   const allQuestions = {
+//     'Vue基础实验': labQuestions['Vue基础实验'],
+//     'JavaScript实验': labQuestions['JavaScript实验'],
+//     'ECharts实验': labQuestions['ECharts实验'],
+//     'Mock.js实验': labQuestions['Mock.js实验'],
+//     'Axios实验': labQuestions['Axios实验']
+//   };
 
-  // 格式化题目数据
-  const formattedData = Object.entries(allQuestions).map(([experimentName, questions]) => {
-    const formattedQuestions = questions.map(q => {
-      return {
-        题目: q.title,
-        选项A: q.options[0],
-        选项B: q.options[1],
-        选项C: q.options[2],
-        选项D: q.options[3],
-        正确答案: ['A', 'B', 'C', 'D'][q.correctAnswer - 1]
-      };
-    });
+//   // 格式化题目数据
+//   const formattedData = Object.entries(allQuestions).map(([experimentName, questions]) => {
+//     const formattedQuestions = questions.map(q => {
+//       return {
+//         题目: q.title,
+//         选项A: q.options[0],
+//         选项B: q.options[1],
+//         选项C: q.options[2],
+//         选项D: q.options[3],
+//         正确答案: ['A', 'B', 'C', 'D'][q.correctAnswer - 1]
+//       };
+//     });
+//     return {
+//       实验名称: experimentName,
+//       习题: formattedQuestions
+//     };
+//   });
+
+//   // 换为JSON字符串
+//   const jsonString = JSON.stringify(formattedData, null, 2);
+
+//   // 创建Blob对象
+//   const blob = new Blob([jsonString], { type: 'application/json' });
+
+//   // 创建下载链接
+//   const url = window.URL.createObjectURL(blob);
+//   const link = document.createElement('a');
+//   link.href = url;
+//   link.download = '实验习题集.json';
+
+//   // 触发下载
+//   document.body.appendChild(link);
+//   link.click();
+
+//   // 清理
+//   document.body.removeChild(link);
+//   window.URL.revokeObjectURL(url);
+// };
+
+const exportQuestions = () => {
+  if (!currentLab.value) return;
+
+  const currentQuestions = labQuestions[currentLab.value.title];
+  const formattedQuestions = currentQuestions.map(q => {
+    const userAnswer = userAnswers.value[currentLab.value!.title][q.id];
     return {
-      实验名称: experimentName,
-      习题: formattedQuestions
+      题目: q.title,
+      选项A: q.options[0],
+      选项B: q.options[1],
+      选项C: q.options[2],
+      选项D: q.options[3],
+      当前同学所选选项是: userAnswer !== undefined ? ['A', 'B', 'C', 'D'][userAnswer] : '未作答',
+      正确答案: ['A', 'B', 'C', 'D'][q.correctAnswer]
     };
   });
 
-  // 换为JSON字符串
+  const formattedData = [{
+    实验名称: currentLab.value.title,
+    习题: formattedQuestions
+  }];
+
   const jsonString = JSON.stringify(formattedData, null, 2);
-  
+
   // 创建Blob对象
   const blob = new Blob([jsonString], { type: 'application/json' });
-  
+
   // 创建下载链接
   const url = window.URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = '实验习题集.json';
-  
+  link.download = `${currentLab.value.title}习题.json`;
+
   // 触发下载
   document.body.appendChild(link);
   link.click();
-  
+
   // 清理
   document.body.removeChild(link);
   window.URL.revokeObjectURL(url);
 };
+
+const showScoreDialog = ref(false);
+const totalCorrectAnswers = computed(() => {
+  let total = 0;
+  Object.entries(userAnswers.value).forEach(([labTitle, answers]) => {
+    if (labQuestions[labTitle]) {
+      Object.entries(answers).forEach(([questionId, userAnswer]) => {
+        const question = labQuestions[labTitle].find(
+          (q) => q.id === Number(questionId)
+        );
+        if (question && userAnswer === question.correctAnswer) {
+          total++;
+        }
+      });
+    }
+  });
+  return total;
+});
 </script>
 
 <style scoped>
@@ -1467,6 +1563,11 @@ const exportQuestions = () => {
   max-width: 600px;
   border-radius: 8px;
   border: 1px solid rgba(0, 234, 255, 0.3);
+  transition: all 0.6s ease;
+}
+
+.intro-image:hover {
+  transform: scale(1.02);
 }
 
 .intro-features-container ul {
@@ -1490,6 +1591,11 @@ const exportQuestions = () => {
   width: 500px;
   height: auto;
   margin: 18px auto;
+  transition: all 0.4s ease-in-out;
+}
+
+.vuedetailimg:hover {
+  transform: scale(1.01);
 }
 
 .theory-section p {

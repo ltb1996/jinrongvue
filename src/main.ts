@@ -6,6 +6,7 @@ import router from './router'
 
 import '@/assets/css/main.scss'
 import '@/assets/css/tailwind.css'
+// import './assets/css/global.scss'
 
 import {registerEcharts} from "@/plugins/echarts"
 //不使用mock 请注释掉

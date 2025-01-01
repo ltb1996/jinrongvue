@@ -35,7 +35,7 @@ const currentWeek = () => {
   // 计算当前是第几周（向上取整）
   const weekNum = Math.ceil((diffDays + 1) / 7);
   // 限制最大周数为20（一般一个学期20周）
-  return Math.min(weekNum, 16);
+  return Math.min(weekNum, 20);
 };
 const timeFn = () => {
   dateData.timing = setInterval(() => {

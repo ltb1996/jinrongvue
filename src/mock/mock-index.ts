@@ -225,7 +225,7 @@ export default [
         // lineData: Mock.mock({
         //     "list|6": ["@integer(5, 80)"]    // 实际安装数 5-80
         // }).list,
-        lineData: [10, 11, 13, 11, 13, 15],
+        lineData: [10, 11, 12, 11, 13, 15],
         rateData: [],
       };
 
