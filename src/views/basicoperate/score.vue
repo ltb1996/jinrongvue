@@ -12,7 +12,7 @@
       <div class="score-header">
         <div class="info-item">
           <span class="label">实验名称</span>
-          <span class="value">基于Vue的金融数据可视化平台实验</span>
+          <span class="value">基于Vue的前端技术虚拟教学与实验</span>
         </div>
         <div class="info-item">
           <span class="label">实验时间</span>
@@ -97,7 +97,7 @@ const initChart = () => {
     },
     legend: {
       orient: "horizontal",
-      right: 120,
+      right: 80,
       top: 0,
       textStyle: {
         color: "#fff",
@@ -236,6 +236,7 @@ onMounted(() => {
 .score-main {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 24px 0;
 }
 

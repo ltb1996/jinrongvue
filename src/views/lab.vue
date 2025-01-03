@@ -1046,6 +1046,13 @@ const handleNextSection = () => {
       router.push("/index");
     }
   }
+  const container = document.querySelector('.lab-container');
+  if (container) {
+    container.scrollTo({
+      top: 0,
+      behavior: 'smooth' // 使用平滑滚动效果
+    });
+  }
 };
 // 相应地，也需要修改handlePrevSection函数以保持一致性
 const handlePrevSection = () => {
@@ -1066,6 +1073,13 @@ const handlePrevSection = () => {
       // 如果是第一个实验，跳转回技术实操页面
       router.push("/basicoperate/shoppage");
     }
+  }
+  const container = document.querySelector('.lab-container');
+  if (container) {
+    container.scrollTo({
+      top: 0,
+      behavior: 'smooth' // 使用平滑滚动效果
+    });
   }
 };
 

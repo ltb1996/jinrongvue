@@ -5,7 +5,7 @@
         <img src="../../assets/img/pic2.png" />
         <p>盛宝金融商科技学院</p>
       </a>
-      <div class="logo">基于Vue.js的金融数据可视化平台</div>
+      <div class="logo">基于Vue的前端技术虚拟教学与实验平台</div>
     </div>
     <div class="right"></div>
   </div>
@@ -108,7 +108,7 @@ export default {
   user-select: none;
   margin-bottom: 25px;
   padding-top: 24px;
-  margin-left: 465px;
+  margin-left: 430px;
 }
 
 .navlink {
