@@ -62,7 +62,7 @@ const indexRadioChange=(flag: boolean)=>{
       <div class="left_shu">实时监测</div>
       <div class="setting_item">
         <span class="setting_label">
-          设备提醒自动轮询: <span class="setting_label_tip"></span>
+          数据统计图1自动轮询: <span class="setting_label_tip"></span>
         </span>
         <div class="setting_content">
           <el-radio-group
@@ -75,7 +75,7 @@ const indexRadioChange=(flag: boolean)=>{
         </div>
       </div>
       <div class="setting_item">
-        <span class="setting_label"> 实时预警轮播: </span>
+        <span class="setting_label"> 数据统计图2轮播: </span>
         <div class="setting_content">
           <el-radio-group
             v-model="rightBottomRadio"

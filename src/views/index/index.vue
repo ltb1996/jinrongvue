@@ -8,6 +8,7 @@ import CenterBottom from "./center-bottom.vue";
 import RightTop from "./right-top.vue";
 import RightCenter from "./right-center.vue";
 import RightBottom from "./right-bottom.vue";
+import UploadIcon from "../../assets/img/upload.png";
 
 import { Edit } from "@element-plus/icons-vue";
 import { ref, provide } from 'vue';
@@ -98,7 +99,10 @@ const handleFileChange = (file: any) => {
           accept=".xlsx,.xls"
           @change="handleFileChange"
         >
-          <el-button type="primary">上传文件</el-button>
+          <el-button type="primary">
+            <img :src="UploadIcon" class="upload-icon" />
+            上传文件
+          </el-button>
         </el-upload>
       </div>
       <ItemWrap class="contetn_left-top contetn_lr-item" title="三亚学院人数统计">
@@ -190,6 +194,17 @@ const handleFileChange = (file: any) => {
 .upload-button {
   position: absolute;
   left: 0;
-  top: -30px;
- }
+  top: -40px;
+
+  .el-button {
+    padding: 18px 18px;
+  }
+
+  .upload-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+}
 </style>

@@ -72,7 +72,7 @@ export default [
               provinceName: "1115656",
               cityName: "222",
               countyName: "333",
-              createTime: "adadad",
+              createTime: "456233",
               deviceId: "6c512d754bbcd6d7cd86abce0e0cac58",
               gatewayno: 100005,
               "onlineState|1": [0, 1],
@@ -122,8 +122,8 @@ export default [
             "硕士学位",
             "国家级人才",
           ],
-          numList: [15, 35, 24, 50, 80, 20], // 盛宝学院数据
-          numList2: [200, 300, 300, 200, 500, 300], // 三亚学院数据
+          numList: [35, 45,44, 50, 80, 60], // 盛宝学院数据
+          numList2: [50, 78, 60, 80, 100, 63], // 三亚学院数据
         },
       });
       return a;
@@ -178,7 +178,7 @@ export default [
         data: {
           "list|40": [
             {
-              alertdetail: "@csentence(5,10)",
+              alertdetail: "3697516",
               "alertname|1": ["水浸告警", "各种报警"],
               alertvalue: "@float(60, 200)",
               createtime: "2022-04-19",
@@ -186,8 +186,8 @@ export default [
               "gatewayno|+1": 10000,
               phase: "A1",
               sbInfo: "@csentence(10,18)",
-              "terminalno|+1": 100,
-              provinceName: "@province()",
+              terminalno: "10023",
+              provinceName: "452365",
               cityName: "@city()",
               countyName: "@county()",
             },

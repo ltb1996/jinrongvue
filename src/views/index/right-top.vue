@@ -270,7 +270,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
       }
     },
     legend: {
-      data: ['盛宝学院', '三亚学院'],
+      data: ['其他学院', '盛宝学院'],
       textStyle: {
         color: '#7EB7FD'
       },
@@ -314,7 +314,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
         data: [
           {
             value: lastSixY,
-            name: '盛宝学院',
+            name: '其他学院',
             symbolSize: 6,
             lineStyle: {
               width: 2,
@@ -326,7 +326,7 @@ const setOption = async (xData: any[], yData: any[], yData2: any[]) => {
           },
           {
             value: lastSixY2,
-            name: '三亚学院',
+            name: '盛宝学院',
             symbolSize: 6,
             lineStyle: {
               width: 2,
