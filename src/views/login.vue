@@ -86,13 +86,13 @@ const goRegister = () => {
 
 .login-title {
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: #fff;
   z-index: 99;
-  background: url(../assets/img/logo3.png) center center no-repeat;
+  background: url(../assets/img/logobaisyxy.png) center center no-repeat;
   background-size: 30%;
-  width: 100%;
-  height: 80px;
+  width: 1030px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,7 +146,7 @@ input:focus {
 }
 
 .tail {
-  margin-top: 8px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
 }

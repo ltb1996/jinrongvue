@@ -3,9 +3,9 @@
     <div class="headpart">
       <a class="left" href="http://shengbao.sanyau.edu.cn/" target="_blank">
         <img src="../../assets/img/pic2.png" />
-        <p>盛宝金融商科技学院</p>
+        <p>三亚学院</p>
       </a>
-      <div class="logo">基于Vue的前端技术虚拟教学与实验平台</div>
+      <div class="logo">基于Vue的金融数据可视化平台</div>
     </div>
     <div class="center">
       <div class="navlink">

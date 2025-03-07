@@ -364,13 +364,13 @@ onMounted(() => {
   border: 0.2em solid rgb(0, 0, 0);
 }
 .logo {
-  width: 425px;
-  height: 60px;
-  background: url("@/assets/img/logo3.png") center center no-repeat;
+  width: 268px;
+  height: 75px;
+  background: url("@/assets/img/logobaisyxy.png") center center no-repeat;
   background-size: 100% 100%;
   position: fixed;
-  top: 60px;
-  right: 50px;
+  top: 50px;
+  right: 60px;
   /* background-position: center center; */
 }
 
