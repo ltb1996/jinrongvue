@@ -2,7 +2,7 @@
   <div class="login-container">
     <video id="v1" autoplay muted loop class="background-video">
       <source
-        src="https://sf3-cdn-tos.toutiaostatic.com/obj/mp/welcome-video.mp4"
+        src="../assets/img/syxyzhaosheng.mp4"
       />
     </video>
     <div class="login-title"></div>
@@ -81,6 +81,7 @@ const goRegister = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 10%;
   z-index: 1;
 }
 
