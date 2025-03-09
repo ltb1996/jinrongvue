@@ -2,7 +2,7 @@
   <div class="login-container">
     <video id="v1" autoplay muted loop class="background-video">
       <source
-        src="../assets/img/syxyzhaosheng.mp4"
+        src="https://sf3-cdn-tos.toutiaostatic.com/obj/mp/welcome-video.mp4"
       />
     </video>
     <div class="login-title"></div>
