@@ -69,7 +69,7 @@ const getDescription = (index: string) => {
   switch (index) {
     case "1":
       return {
-        text: `(1) 本项目是一个基于 Vue.js 的金融数据可视化平台，采用 Vue 3 + TypeScript 作为核心开发框架。
+        text: `(1) 本项目是一个基于 Vue.js 的前端技术虚拟教学与实验平台，采用 Vue 3 + TypeScript 作为核心开发框架。
         (2) 项目整体采用模块化设计，包含项目介绍、核心技术、技术实操和项目成果四大模块。
         (3) 在技术栈选择上，使用 Vite 作为构建工具以提供极速的开发体验，采用 Element Plus 组件库构建现代化的用户界面，引入 ECharts 实现专业的数据可视化展示。
         (4) 通过 Mock.js 模拟后端接口数据，并使用 Axios 处理 HTTP 请求。

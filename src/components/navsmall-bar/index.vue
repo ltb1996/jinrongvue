@@ -5,7 +5,7 @@
         <img src="../../assets/img/pic2.png" />
         <p>三亚学院</p>
       </a>
-      <div class="logo">基于Vue的金融数据可视化平台</div>
+      <div class="logo">USY前端技术虚拟教学与实验平台</div>
     </div>
     <div class="right"></div>
   </div>
